@@ -10,7 +10,7 @@ import PromoGame from '@/components/PromoGame.vue'
         <div class="allGenres">
             <AllGenresList class="allGenres__genre" />
         </div>
-        <PromoGame />
+        <!-- <PromoGame /> -->
     </section>
 </template>
 

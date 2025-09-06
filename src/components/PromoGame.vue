@@ -1,47 +1,47 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch } from 'vue'
-import { useSwiper } from '@/hooks/useSwiper'
-import { Pagination } from 'swiper/modules'
-import GamePromoCard from '@/components/PromoGameCard.vue'
-import { useQuery } from '@tanstack/vue-query'
-import { fetchPromoContent } from '@/services/promoService'
-import BaseLoader from './base/BaseLoader.vue'
+// import { nextTick, onMounted, ref, watch } from 'vue'
+// import { useSwiper } from '@/hooks/useSwiper'
+// import { Pagination } from 'swiper/modules'
+// import GamePromoCard from '@/components/PromoGameCard.vue'
+// import { useQuery } from '@tanstack/vue-query'
+// import { fetchPromoContent } from '@/services/promoService'
+// import BaseLoader from './base/BaseLoader.vue'
 
-const { data: promoGames, isFetching } = useQuery({
-    queryKey: ['fetchPromoGames'],
-    queryFn: () => fetchPromoContent()
-})
+// const { data: promoGames, isFetching } = useQuery({
+//     queryKey: ['fetchPromoGames'],
+//     queryFn: () => fetchPromoContent()
+// })
 
-const swiperPromo = ref<HTMLElement | null>(null)
+// const swiperPromo = ref<HTMLElement | null>(null)
 
-const { initSwiper } = useSwiper(swiperPromo, {
-    modules: [Pagination],
-    loop: true,
-    spaceBetween: 16,
-    speed: 800,
-    breakpoints: {
-        320: {
-            slidesPerView: 1
-        },
-        768: {
-            slidesPerView: 2
-        }
-    },
-    pagination: {
-        el: '.swiper-pagination.promo-pagination'
-    }
-})
+// const { initSwiper } = useSwiper(swiperPromo, {
+//     modules: [Pagination],
+//     loop: true,
+//     spaceBetween: 16,
+//     speed: 800,
+//     breakpoints: {
+//         320: {
+//             slidesPerView: 1
+//         },
+//         768: {
+//             slidesPerView: 2
+//         }
+//     },
+//     pagination: {
+//         el: '.swiper-pagination.promo-pagination'
+//     }
+// })
 
-watch([() => promoGames, swiperPromo], (newData) => {
-    if (newData && swiperPromo.value) {
-        nextTick(() => initSwiper())
-    }
-})
+// watch([() => promoGames, swiperPromo], (newData) => {
+//     if (newData && swiperPromo.value) {
+//         nextTick(() => initSwiper())
+//     }
+// })
 </script>
 
 <template>
     <section class="promo">
-        <BaseLoader v-if="isFetching" />
+        <!-- <BaseLoader v-if="isFetching" />
         <div v-else class="swiper promo__swiper" ref="swiperPromo">
             <div class="swiper-wrapper">
                 <GamePromoCard
@@ -52,12 +52,13 @@ watch([() => promoGames, swiperPromo], (newData) => {
                 />
             </div>
         </div>
-        <div class="swiper-pagination promo-pagination"></div>
+        <div class="swiper-pagination promo-pagination"></div> -->
     </section>
 </template>
 
 <style lang="scss" scoped>
 .promo {
+    display: none;
     margin-bottom: 40px;
     position: relative;
     min-height: 300px;

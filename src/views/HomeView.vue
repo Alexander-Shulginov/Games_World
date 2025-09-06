@@ -33,8 +33,8 @@ useHead({
         <PopularGames />
         <PopularCategory />
         <CatalogGames />
-        <PromoGame />
-        <BlogSection />
+        <!-- <PromoGame /> -->
+        <!-- <BlogSection /> -->
         <ProjectInfo />
         <BaseScrollToTop />
     </section>

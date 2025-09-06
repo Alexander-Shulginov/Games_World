@@ -14,10 +14,10 @@ const footerNav = [
                 text: 'Genres',
                 url: { name: 'Genres' }
             },
-            {
-                text: 'Blog',
-                url: { name: 'Blog' }
-            }
+            // {
+            //     text: 'Blog',
+            //     url: { name: 'Blog' }
+            // }
         ]
     },
     {

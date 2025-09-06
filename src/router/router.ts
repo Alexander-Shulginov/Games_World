@@ -36,18 +36,18 @@ const routes: RouteRecordRaw[] = [
             filters: () => import('@/layouts/TheFilters/TheFilters.vue')
         } as RouteRecordRaw
     },
-    {
-        path: '/article/:id',
-        name: 'Article',
-        props: true,
-        component: () => import('@/views/ArticleView.vue')
-    },
-    {
-        path: '/blog',
-        name: 'Blog',
-        meta: { title: 'Blog' },
-        component: () => import('@/views/ArticleListView.vue')
-    },
+    // {
+    //     path: '/article/:id',
+    //     name: 'Article',
+    //     props: true,
+    //     component: () => import('@/views/ArticleView.vue')
+    // },
+    // {
+    //     path: '/blog',
+    //     name: 'Blog',
+    //     meta: { title: 'Blog' },
+    //     component: () => import('@/views/ArticleListView.vue')
+    // },
     {
         path: '/:pathMatch(.*)*',
         name: '404',

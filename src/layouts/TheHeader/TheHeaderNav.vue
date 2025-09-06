@@ -12,9 +12,9 @@
             <li>
                 <RouterLink :to="{ name: 'Genres' }" class="nav__item">Genres</RouterLink>
             </li>
-            <li>
+            <!-- <li>
                 <RouterLink :to="{ name: 'Blog' }" class="nav__item">Blog</RouterLink>
-            </li>
+            </li> -->
         </ul>
     </nav>
 </template>
