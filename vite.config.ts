@@ -15,12 +15,18 @@ export default defineConfig({
             plugins: [
                 visualizer({
                     filename: 'stats.html', // куда сохранить отчёт
-                    open: true, // сразу открыть в браузере
+                    open: false, // сразу открыть в браузере
                     gzipSize: true,
                     brotliSize: true
                 })
-            ]
-        }
+            ],
+            output: {
+                manualChunks: {
+                    fancyapps: ['@fancyapps/ui']
+                }
+            },
+        },
+        sourcemap: 'hidden',
     },
     server: {
         proxy: {

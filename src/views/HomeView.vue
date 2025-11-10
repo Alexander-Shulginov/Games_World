@@ -21,6 +21,11 @@ useHead({
             rel: 'preload',
             as: 'image',
             href: witcherImg
+        },
+        {
+            rel: 'preconnect',
+            href: 'https://api.rawg.io',
+            crossorigin: ''
         }
     ],
 })
