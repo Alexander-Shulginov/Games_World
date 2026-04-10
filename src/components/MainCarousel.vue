@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Pagination } from 'swiper/modules'
-import { useSwiper } from '@/hooks/useSwiper'
+import { useSwiper } from '@/composables/useSwiper'
 import { mainContent } from '@/data/mainContent'
 import CardFullscreen from '@/components/cards/CardFullscreen.vue'
 
@@ -22,12 +22,7 @@ useSwiper(swiperFullscreen, {
 <template>
     <div class="swiper mainCarousel" ref="swiperFullscreen">
         <div class="swiper-wrapper">
-            <CardFullscreen
-                v-for="(game, index) in mainContent"
-                :data="game"
-                :id="index"
-                class="swiper-slide"
-            />
+            <CardFullscreen v-for="(game, index) in mainContent" :data="game" :id="index" class="swiper-slide" />
         </div>
         <div class="swiper-pagination"></div>
     </div>

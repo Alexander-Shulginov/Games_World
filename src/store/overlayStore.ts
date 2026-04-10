@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { onMounted, onUnmounted, reactive } from 'vue'
 
 export const overlayState = reactive({
     overlayIsOpen: false
@@ -21,12 +21,16 @@ export const useOverlay = () => {
 
     const mediaQuery = window.matchMedia('(max-width: 1024px)')
 
-    const handleMediaChange = (e: any) => {
+    const handleMediaChange = (e: MediaQueryListEvent) => {
         hideOverlay()
     }
 
-    mediaQuery.addEventListener('change', handleMediaChange)
-    handleMediaChange(mediaQuery)
+    onMounted(() => {
+        mediaQuery.addEventListener('change', handleMediaChange)
+    })
+    onUnmounted(() => {
+        mediaQuery.removeEventListener('change', handleMediaChange)
+    })
 
     return { showOverlay, hideOverlay, toggleOverlay }
 }

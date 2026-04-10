@@ -1,9 +1,9 @@
-import { ref, onMounted, onUnmounted, nextTick, Ref } from 'vue'
+import { onMounted, onUnmounted, nextTick, Ref, shallowRef } from 'vue'
 import Swiper from 'swiper'
 import { SwiperOptions } from 'swiper/types'
 
 export function useSwiper(swiperContainer: Ref<HTMLElement | null>, options: SwiperOptions = {}) {
-    const swiperInstance = ref<Swiper | null>(null)
+    const swiperInstance = shallowRef<Swiper | null>(null)
 
     const initSwiper = () => {
         if (!swiperContainer.value || swiperInstance.value) return

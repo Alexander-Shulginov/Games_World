@@ -3,7 +3,7 @@ import { nextTick, ref, watch } from 'vue'
 import { Navigation } from 'swiper/modules'
 import { IListGames } from '@/types/interfaces/IGames'
 import CardPopular from '@/components/cards/CardPopular.vue'
-import { useSwiper } from '@/hooks/useSwiper'
+import { useSwiper } from '@/composables/useSwiper'
 import BaseLoader from '@/components/base/BaseLoader.vue'
 
 const props = defineProps<{
@@ -46,12 +46,7 @@ watch([() => props.data, swiperCategory], async (newData) => {
         <BaseLoader v-if="isLoading" />
         <div class="swiper popularCarousel__swiper" ref="swiperCategory" v-if="data">
             <div class="swiper-wrapper">
-                <CardPopular
-                    class="swiper-slide"
-                    v-for="game in data.results"
-                    :key="game.id"
-                    :data="game"
-                />
+                <CardPopular class="swiper-slide" v-for="game in data.results" :key="game.id" :data="game" />
             </div>
         </div>
         <div class="swiper-button-next btn-popular"></div>

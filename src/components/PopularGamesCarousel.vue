@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { nextTick, ref, watch } from 'vue'
 import { Navigation } from 'swiper/modules'
-import { useSwiper } from '@/hooks/useSwiper'
+import { useSwiper } from '@/composables/useSwiper'
 import { IListGames } from '@/types/interfaces/IGames'
 import CardBase from '@/components/cards/CardBase.vue'
 import BaseLoader from '@/components/base/BaseLoader.vue'
