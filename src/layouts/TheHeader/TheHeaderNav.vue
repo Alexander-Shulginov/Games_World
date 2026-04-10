@@ -1,20 +1,13 @@
+<script setup lang="ts">
+import { HEADER_CONFIG } from '@/config/header.config';
+</script>
 <template>
-    <nav class="nav">
+    <nav class="nav" aria-label="Main navigation">
         <ul class="nav__items">
-            <li>
-                <RouterLink :to="{ name: 'Home' }" class="nav__item">Home</RouterLink>
+            <li v-for="link in HEADER_CONFIG" :key="link.name">
+                <RouterLink :to="{ name: link.to, query: link.query }" :title="link.name" :aria-label="link.name" class="nav__item">{{
+                    link.name }}</RouterLink>
             </li>
-            <li>
-                <RouterLink :to="{ name: 'Games', query: { page: 1 } }" class="nav__item"
-                    >Games</RouterLink
-                >
-            </li>
-            <li>
-                <RouterLink :to="{ name: 'Genres' }" class="nav__item">Genres</RouterLink>
-            </li>
-            <!-- <li>
-                <RouterLink :to="{ name: 'Blog' }" class="nav__item">Blog</RouterLink>
-            </li> -->
         </ul>
     </nav>
 </template>
@@ -25,15 +18,13 @@
 
     margin-left: auto;
 
-    @media (max-width: 568px) {
-    }
+    @media (max-width: 568px) {}
 
     &__items {
         display: flex;
         gap: 18px;
 
-        @media (max-width: 568px) {
-        }
+        @media (max-width: 568px) {}
     }
 
     &__item {
@@ -43,6 +34,7 @@
             }
         }
     }
+
     .router-link-active {
         border-bottom: 2px solid var(--color-accent);
     }

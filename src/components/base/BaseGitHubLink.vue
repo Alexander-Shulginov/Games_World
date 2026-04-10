@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import IconGitHub from '@/components/icons/IconGitHub.vue'
+import { APP_CONFIG } from '@/config/app.config';
 </script>
 
 <template>
-    <a href="https://github.com/Alexander-Shulginov/Games_World" target="_blank" class="git-link" aria-label="Github link">
+    <a
+        :href="APP_CONFIG.global.appGitHub"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="git-link"
+        aria-label="Projects on Github"
+    >
         <IconGitHub />
     </a>
 </template>
