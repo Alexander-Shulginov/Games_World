@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Pagination } from 'swiper/modules'
-import { useSwiper } from '@/hooks/useSwiper'
+import { useSwiper } from '@/composables/useSwiper'
 import { genreList } from '@/types/genres'
 import GenreListCard from '@/components/GenreListCard.vue'
 
@@ -37,15 +37,9 @@ useSwiper(swiperGenre, {
     <section class="genre">
         <div class="swiper genre__swiper" ref="swiperGenre">
             <div class="swiper-wrapper">
-                <GenreListCard
-                    v-for="genre in genreList"
-                    :key="genre.genreName"
-                    :genre-id="genre.genreId"
-                    :genre-name="genre.genreName"
-                    :genre-img="genre.genreImg"
-                    :genre-slug="genre.genreSlug"
-                    class="swiper-slide"
-                />
+                <GenreListCard v-for="genre in genreList" :key="genre.genreName" :genre-id="genre.genreId"
+                    :genre-name="genre.genreName" :genre-img="genre.genreImg" :genre-slug="genre.genreSlug"
+                    class="swiper-slide" />
             </div>
         </div>
         <div class="swiper-pagination genre-pagination"></div>

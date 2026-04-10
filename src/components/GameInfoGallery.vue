@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, nextTick } from 'vue'
 import { Fancybox } from '@fancyapps/ui'
-import { useSwiper } from '@/hooks/useSwiper'
+import { useSwiper } from '@/composables/useSwiper'
 import { Pagination } from 'swiper/modules'
 import '@fancyapps/ui/dist/fancybox/fancybox.css'
 
@@ -64,21 +64,10 @@ onUnmounted(() => {
     <div class="gameInfo__gallery">
         <div class="swiper" ref="swiperSimilar">
             <div class="swiper-wrapper">
-                <a
-                    v-for="screen in screens"
-                    data-fancybox="gallery"
-                    :href="screen.img"
-                    class="swiper-slide"
-                    tabindex="-1"
-                >
-                    <img
-                        class="gameInfo__gallery-img"
-                        :key="screen.id"
-                        :width="screen.width"
-                        :height="screen.height"
-                        :src="screen.img"
-                        :alt="data?.name"
-                    />
+                <a v-for="screen in screens" data-fancybox="gallery" :href="screen.img" class="swiper-slide"
+                    tabindex="-1">
+                    <img class="gameInfo__gallery-img" :key="screen.id" :width="screen.width" :height="screen.height"
+                        :src="screen.img" :alt="data?.name" />
                 </a>
             </div>
             <div class="swiper-pagination"></div>
@@ -97,6 +86,7 @@ onUnmounted(() => {
         object-fit: cover;
         aspect-ratio: 16 / 9;
     }
+
     .swiper {
         padding-bottom: 40px;
     }

@@ -5,7 +5,7 @@ const isDesktop = () => {
 }
 
 export const filtersState = reactive({
-    isOpen: isDesktop() ? false : true
+    isOpen: !isDesktop()
 })
 
 export const toggleFilters = () => {
@@ -14,7 +14,7 @@ export const toggleFilters = () => {
 
 const mediaQuery = window.matchMedia('(max-width: 1024px)')
 
-const handleMediaChange = (e: any) => {
+const handleMediaChange = (e: MediaQueryListEvent | MediaQueryList) => {
     filtersState.isOpen = e.matches
 }
 

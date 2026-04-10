@@ -2,7 +2,7 @@
 import IconCardLayoutLines from '@/components/icons/cards-layouts/IconCardLayoutLines.vue'
 import IconCardLayoutDots3x3 from '@/components/icons/cards-layouts/IconCardLayoutDots3x3.vue'
 import { onMounted, watch } from 'vue'
-import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { useLocalStorage } from '@/utils/localStorageManager'
 
 const radioValue = defineModel()
 
@@ -30,27 +30,15 @@ watch(
     <div class="cardsLayouts">
         <div class="cardsLayouts__wrap">
             <label class="cardsLayouts__label" for="layout-row">
-                <input
-                    type="radio"
-                    name="cards-layout-row"
-                    id="layout-row"
-                    value="layout-row"
-                    v-model="radioValue"
-                    class="cardsLayouts__radio"
-                />
+                <input type="radio" name="cards-layout-row" id="layout-row" value="layout-row" v-model="radioValue"
+                    class="cardsLayouts__radio" />
                 <IconCardLayoutLines class="cardsLayouts__icon" />
             </label>
         </div>
         <div class="cardsLayouts__wrap">
             <label class="cardsLayouts__label" for="layout-column">
-                <input
-                    type="radio"
-                    name="cards-layout-column"
-                    id="layout-column"
-                    value="layout-column"
-                    v-model="radioValue"
-                    class="cardsLayouts__radio"
-                />
+                <input type="radio" name="cards-layout-column" id="layout-column" value="layout-column"
+                    v-model="radioValue" class="cardsLayouts__radio" />
                 <IconCardLayoutDots3x3 class="cardsLayouts__icon" />
             </label>
         </div>
@@ -69,6 +57,7 @@ watch(
         display: flex;
         align-items: center;
         justify-content: center;
+
         @media (any-hover: hover) {
             &:hover {
                 .cardsLayouts__icon {
@@ -92,7 +81,7 @@ watch(
         background-color: transparent;
     }
 
-    &__radio:checked ~ .cardsLayouts__icon {
+    &__radio:checked~.cardsLayouts__icon {
         fill: var(--color-accent);
     }
 
