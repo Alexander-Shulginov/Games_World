@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BaseText from '@/components/base/BaseText.vue'
-
-const currentYear = new Date().getFullYear()
+import { APP_CONFIG } from '@/config/app.config';
+import { getCurrentYear } from '@/utils/getCurrentYear';
 </script>
 
 <template>
@@ -10,8 +10,15 @@ const currentYear = new Date().getFullYear()
 
         <BaseText :size="'small'" :color="'second'">
             Copyright ©
-            {{ currentYear }}
-            <a href="https://github.com/Alexander-Shulginov" target="_blank">Alexander Shulginov</a>
+            {{ getCurrentYear() }}
+            <a
+                :href="APP_CONFIG.global.authorGithub"
+                target="_blank"
+                rel="noopener noreferrer"
+                :aria-label="'Developer profile of ' + APP_CONFIG.global.authorName + ' on GitHub'"
+            >
+                {{ APP_CONFIG.global.authorName }}
+            </a>
         </BaseText>
     </div>
 </template>

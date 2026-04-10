@@ -1,85 +1,14 @@
 <script setup lang="ts">
 import BaseTitle from '@/components/base/BaseTitle.vue'
 import TheFooterNavList from '@/layouts/TheFooter/TheFooterNavList.vue'
-
-const footerNav = [
-    {
-        title: 'Useful Links',
-        links: [
-            {
-                text: 'Games',
-                url: { name: 'Games' }
-            },
-            {
-                text: 'Genres',
-                url: { name: 'Genres' }
-            },
-            // {
-            //     text: 'Blog',
-            //     url: { name: 'Blog' }
-            // }
-        ]
-    },
-    {
-        title: 'Games',
-        links: [
-            {
-                text: 'PC',
-                url: {
-                    name: 'Games',
-                    query: { parent_platforms: 1 }
-                }
-            },
-            {
-                text: 'PlayStation',
-                url: {
-                    name: 'Games',
-                    query: { parent_platforms: 2 }
-                }
-            },
-            {
-                text: 'Xbox',
-                url: {
-                    name: 'Games',
-                    query: { parent_platforms: 3 }
-                }
-            },
-            {
-                text: 'Nintendo',
-                url: {
-                    name: 'Games',
-                    query: { parent_platforms: 7 }
-                }
-            }
-        ]
-    },
-    {
-        title: 'Social Links',
-        links: [
-            {
-                text: 'Instagram',
-                url: { name: 'Home' }
-            },
-            {
-                text: 'Twitter',
-                url: { name: 'Home' }
-            },
-            {
-                text: 'YouTube',
-                url: { name: 'Home' }
-            }
-        ]
-    }
-]
+import { FOOTER_CONFIG } from '@/config/footer.config'
 </script>
 
 <template>
-    <nav class="footer__nav">
-        <div class="footer__column" v-for="link in footerNav">
-            <BaseTitle :tag="'h4'" :is-bold="true" class="footer__subtitle">{{
-                link.title
-            }}</BaseTitle>
-            <TheFooterNavList :links="link" />
+    <nav class="footer__nav" aria-label="Footer navigation">
+        <div v-for="link, index in FOOTER_CONFIG.links" :key="index">
+            <BaseTitle :tag="'h4'" :is-bold="true" class="footer__subtitle">{{ link.title }}</BaseTitle>
+            <TheFooterNavList :items="link" />
         </div>
     </nav>
 </template>
