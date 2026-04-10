@@ -1,15 +1,15 @@
 <script setup lang="ts">
+import { FooterLinks } from '@/config/footer.config';
+
 defineProps<{
-    links: {
-        links: { text: string; url: {} }[]
-    }
+    items: FooterLinks
 }>()
 </script>
 
 <template>
     <ul class="footer__list">
-        <li v-for="link in links.links">
-            <router-link :to="link.url" class="footer__link">{{ link.text }}</router-link>
+        <li v-for="link, index in items.links" :key="index">
+            <router-link :to="link.url" class="footer__link" :title="link.text" :aria-label="link.text">{{ link.text }}</router-link>
         </li>
     </ul>
 </template>
