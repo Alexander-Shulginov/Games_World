@@ -1,3 +1,5 @@
+import { RouteName } from "@/router/router";
+
 export type FooterLinks = {
     title: string;
     links: {
@@ -25,11 +27,11 @@ export const FOOTER_CONFIG: FooterConfig = {
             links: [
                 {
                     text: 'Games',
-                    url: { name: 'Games' }
+                    url: { name: RouteName.Games }
                 },
                 {
                     text: 'Genres',
-                    url: { name: 'Genres' }
+                    url: { name: RouteName.Genres }
                 },
                 // {
                 //     text: 'Blog',
@@ -43,28 +45,28 @@ export const FOOTER_CONFIG: FooterConfig = {
                 {
                     text: 'PC',
                     url: {
-                        name: 'Games',
+                        name: RouteName.Games,
                         query: { parent_platforms: 1 }
                     }
                 },
                 {
                     text: 'PlayStation',
                     url: {
-                        name: 'Games',
+                        name: RouteName.Games,
                         query: { parent_platforms: 2 }
                     }
                 },
                 {
                     text: 'Xbox',
                     url: {
-                        name: 'Games',
+                        name: RouteName.Games,
                         query: { parent_platforms: 3 }
                     }
                 },
                 {
                     text: 'Nintendo',
                     url: {
-                        name: 'Games',
+                        name: RouteName.Games,
                         query: { parent_platforms: 7 }
                     }
                 }
@@ -75,15 +77,15 @@ export const FOOTER_CONFIG: FooterConfig = {
             links: [
                 {
                     text: 'Instagram',
-                    url: { name: 'Home' }
+                    url: { name: RouteName.Home }
                 },
                 {
                     text: 'Twitter',
-                    url: { name: 'Home' }
+                    url: { name: RouteName.Home }
                 },
                 {
                     text: 'YouTube',
-                    url: { name: 'Home' }
+                    url: { name: RouteName.Home }
                 }
             ]
         }

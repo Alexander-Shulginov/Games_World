@@ -1,3 +1,5 @@
+import { RouteName } from "@/router/router";
+
 export type HeaderNav = {
     name: string;
     to: string,
@@ -9,18 +11,18 @@ export type HeaderNav = {
 export const HEADER_CONFIG: HeaderNav[] = [
     {
         name: 'Home',
-        to: 'Home'
+        to: RouteName.Home
     },
     {
         name: 'Games',
-        to: 'Games',
+        to: RouteName.Games,
         query: {
             page: 1
         }
     },
     {
         name: 'Genres',
-        to: 'Genres'
+        to: RouteName.Genres
     }
 
 ]
