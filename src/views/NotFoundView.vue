@@ -7,5 +7,3 @@ import NotFound from '@/components/NotFound.vue'
         <NotFound />
     </section>
 </template>
-
-<style lang="scss" scoped></style>

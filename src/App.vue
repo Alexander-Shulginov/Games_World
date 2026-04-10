@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import TheHeader from '@/layouts/TheHeader/TheHeader.vue'
-import TheFooter from '@/layouts/TheFooter/TheFooter.vue'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { overlayState } from './store/overlayStore'
+import TheHeader from '@/layouts/TheHeader/TheHeader.vue'
+import TheFooter from '@/layouts/TheFooter/TheFooter.vue'
+import { overlayState } from '@/store/overlayStore'
+
 const route = useRoute()
 
 const hasFilters = computed(() => route.matched.some((m) => m.components?.filters))
@@ -19,12 +20,14 @@ const isInert = computed(() => {
 </script>
 
 <template>
-    <TheHeader :inert="isInert" />
-    <main :class="classes">
-        <router-view name="filters"></router-view>
-        <router-view :inert="isInert" v-slot="{ Component, route }">
-            <component :is="Component" :key="route.path"></component>
-        </router-view>
-    </main>
-    <TheFooter :inert="isInert" />
+    <div class="wrapper" :inert="isInert">
+        <TheHeader />
+        <main :class="classes">
+            <router-view name="filters"></router-view>
+            <router-view v-slot="{ Component, route }">
+                <component :is="Component" :key="route.path"></component>
+            </router-view>
+        </main>
+        <TheFooter />
+    </div>
 </template>
