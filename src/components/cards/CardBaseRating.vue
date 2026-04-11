@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { formatNumber } from '@/utils/formatNumber'
-import IconStar from '@/components/icons/IconStar.vue'
+import SvgIcon from '@/components/UI/SvgIcon.vue'
 
 defineProps<{
     rating: number
@@ -12,7 +12,7 @@ defineProps<{
         <span class="cardBase__value">
             {{ formatNumber(rating) }}
         </span>
-        <IconStar :width="16" :height="16" />
+        <SvgIcon name="common-star" :size="16" />
     </div>
 </template>
 

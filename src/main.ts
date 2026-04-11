@@ -3,6 +3,7 @@ import { VueQueryPlugin } from '@tanstack/vue-query'
 import App from './App.vue'
 import { router } from './router/router'
 import { createHead } from '@vueuse/head'
+import 'virtual:svg-icons-register'
 
 import 'swiper/css'
 import 'swiper/css/navigation'

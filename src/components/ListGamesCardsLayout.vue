@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import IconCardLayoutLines from '@/components/icons/cards-layouts/IconCardLayoutLines.vue'
-import IconCardLayoutDots3x3 from '@/components/icons/cards-layouts/IconCardLayoutDots3x3.vue'
+import SvgIcon from '@/components/UI/SvgIcon.vue'
 import { onMounted, watch } from 'vue'
-import { useLocalStorage } from '@/utils/localStorageManager'
+import { localStorageManager } from '@/utils/localStorageManager'
 
 const radioValue = defineModel()
 
-const { setToLocalStorage, getLocalStorageItem } = useLocalStorage()
+const { setToLocalStorage, getLocalStorageItem } = localStorageManager()
 
 onMounted(() => {
     const savedLayout = getLocalStorageItem('layout')
@@ -32,14 +31,14 @@ watch(
             <label class="cardsLayouts__label" for="layout-row">
                 <input type="radio" name="cards-layout-row" id="layout-row" value="layout-row" v-model="radioValue"
                     class="cardsLayouts__radio" />
-                <IconCardLayoutLines class="cardsLayouts__icon" />
+                <SvgIcon name="cards-layouts-lines" :size="24" class="cardsLayouts__icon" />
             </label>
         </div>
         <div class="cardsLayouts__wrap">
             <label class="cardsLayouts__label" for="layout-column">
                 <input type="radio" name="cards-layout-column" id="layout-column" value="layout-column"
                     v-model="radioValue" class="cardsLayouts__radio" />
-                <IconCardLayoutDots3x3 class="cardsLayouts__icon" />
+                <SvgIcon name="cards-layouts-dots3x3" :size="22" class="cardsLayouts__icon" />
             </label>
         </div>
     </div>

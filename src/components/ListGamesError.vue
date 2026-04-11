@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import IconErrorLogo from '@/components/icons/IconErrorLogo.vue'
+import SvgIcon from '@/components/UI/SvgIcon.vue'
 </script>
 
 <template>
     <div class="no-results">
-        <IconErrorLogo :width="53" :height="64" />
+        <SvgIcon name="common-error-logo" class="no-results__logo" />
         <pre>
 ███╗   ██╗ ██████╗     ██████╗ ███████╗███████╗██╗   ██╗██╗  ████████╗███████╗
 ████╗  ██║██╔═══██╗    ██╔══██╗██╔════╝██╔════╝██║   ██║██║  ╚══██╔══╝██╔════╝
@@ -24,6 +24,11 @@ import IconErrorLogo from '@/components/icons/IconErrorLogo.vue'
     flex-direction: column;
     align-items: center;
     gap: 10px;
+
+    &__logo {
+        width: 53px;
+        height: 64px;
+    }
 
     pre {
         font-size: 8px;

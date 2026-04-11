@@ -1,12 +1,6 @@
 <script setup lang="ts">
-import { type Component, computed } from 'vue'
-import IconPlatformPlayStation from '@/components/icons/platforms/IconPlatformPlayStation.vue'
-import IconPlatformXbox from '@/components/icons/platforms/IconPlatformXbox.vue'
-import IconPlatformApple from '@/components/icons/platforms/IconPlatformApple.vue'
-import IconPlatformLinux from '@/components/icons/platforms/IconPlatformLinux.vue'
-import IconPlatformNintendo from '@/components/icons/platforms/IconPlatformNintendo.vue'
-import IconPlatformAndroid from '@/components/icons/platforms/IconPlatformAndroid.vue'
-import IconPlatformWindows from '@/components/icons/platforms/IconPlatformWindows.vue'
+import { computed } from 'vue'
+import SvgIcon from '@/components/UI/SvgIcon.vue'
 
 const props = defineProps<{
     platforms: {
@@ -15,14 +9,14 @@ const props = defineProps<{
     }[]
 }>()
 
-const platformIcons: Record<number, Component> = {
-    1: IconPlatformWindows,
-    2: IconPlatformPlayStation,
-    3: IconPlatformXbox,
-    5: IconPlatformApple,
-    6: IconPlatformLinux,
-    7: IconPlatformNintendo,
-    8: IconPlatformAndroid
+const platformIcons: Record<number, string> = {
+    1: 'windows',
+    2: 'playstation',
+    3: 'xbox',
+    5: 'apple',
+    6: 'linux',
+    7: 'nintendo',
+    8: 'android'
 }
 
 const filteredPlatforms = computed(() =>
@@ -30,18 +24,15 @@ const filteredPlatforms = computed(() =>
         .map(({ id, name }) => ({
             id,
             name: name.includes('Macintosh') ? 'Apple' : name.replace(/PC/g, 'Windows'),
-
-            component: platformIcons[id]
+            icon: platformIcons[id]
         }))
-        .filter((p) => p.component)
+        .filter((p) => p.icon)
 )
 </script>
 
 <template>
     <div class="platform" v-for="platform in filteredPlatforms" :key="platform.id">
-        <template v-if="platform.component">
-            <component :is="platform.component" class="platform__icon" />
-        </template>
+        <SvgIcon :name="`platforms-${platform.icon!}`" :size="20" class="platform__icon" />
         <span class="platform__name">{{ platform.name }}</span>
     </div>
 </template>
@@ -66,6 +57,8 @@ const filteredPlatforms = computed(() =>
 
     &__icon {
         transition: transform 0.3s ease-in-out;
+        fill: var(--color-light);
+
         @media (max-width: 768px) {
             width: 16px;
             height: 16px;
@@ -105,6 +98,7 @@ const filteredPlatforms = computed(() =>
     &:first-child {
         .platform__name {
             left: 150%;
+
             &::after {
                 left: 10px;
                 border-width: 0 6px 6px 6px;

@@ -4,7 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { fetchGames } from '@/services/gamesService'
 import { updateUrlQuery } from '@/utils/updateUrlQuery'
 import { useQuery } from '@tanstack/vue-query'
-import IconClose from '@/components/icons/IconClose.vue'
+import SvgIcon from '@/components/UI/SvgIcon.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -51,7 +51,7 @@ watch(
             placeholder="Search games"
         />
         <span v-show="searchQuery" @click="clearInput" class="searchField__clear">
-            <IconClose :width="24" :height="24" />
+            <SvgIcon name="common-close" :size="24" />
         </span>
     </div>
 </template>
