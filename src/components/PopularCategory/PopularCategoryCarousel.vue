@@ -2,9 +2,9 @@
 import { nextTick, ref, watch } from 'vue'
 import { Navigation } from 'swiper/modules'
 import { IListGames } from '@/types/interfaces/IGames'
-import CardPopular from '@/components/cards/CardPopular.vue'
+import CardPopular from '@/components/Cards/CardPopular.vue'
 import { useSwiper } from '@/composables/useSwiper'
-import BaseLoader from '@/components/base/BaseLoader.vue'
+import BaseLoader from '@/components/UI/BaseLoader.vue'
 
 const props = defineProps<{
     data: IListGames | undefined

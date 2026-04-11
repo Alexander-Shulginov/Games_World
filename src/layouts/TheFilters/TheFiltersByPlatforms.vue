@@ -5,7 +5,7 @@ import { updateUrlQuery } from '@/utils/updateUrlQuery'
 import BaseCheckbox from '@/components/UI/BaseCheckbox.vue'
 import { useQuery } from '@tanstack/vue-query'
 import { fetchPlatforms } from '@/services/platformsService'
-import BaseLoader from '@/components/base/BaseLoader.vue'
+import BaseLoader from '@/components/UI/BaseLoader.vue'
 
 const route = useRoute()
 const router = useRouter()

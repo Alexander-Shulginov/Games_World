@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BaseTitle from '@/components/base/BaseTitle.vue'
+import BaseTitle from '@/components/UI/BaseTitle.vue'
 import TheFooterNavList from '@/layouts/TheFooter/TheFooterNavList.vue'
 import { FOOTER_CONFIG } from '@/config/footer.config'
 </script>

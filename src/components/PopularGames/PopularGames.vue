@@ -2,8 +2,8 @@
 import { useQuery } from '@tanstack/vue-query'
 import BaseLink from '@/components/UI/BaseLink.vue'
 import { fetchGames } from '@/services/gamesService'
-import BaseTitle from '@/components/base/BaseTitle.vue'
-import PopularGamesCarousel from '@/components/PopularGamesCarousel.vue'
+import BaseTitle from '@/components/UI/BaseTitle.vue'
+import PopularGamesCarousel from '@/components/PopularGames/PopularGamesCarousel.vue'
 
 const { isPending, data } = useQuery({
     queryKey: ['getGames'],

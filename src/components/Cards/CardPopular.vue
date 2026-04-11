@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IGame } from '@/types/interfaces/IGames'
-import BaseImg from '@/components/base/BaseImg.vue'
+import BaseImg from '@/components/UI/BaseImg.vue'
 
 defineProps<{
     data: IGame | undefined

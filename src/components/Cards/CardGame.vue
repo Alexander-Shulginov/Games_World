@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import BaseImg from '@/components/base/BaseImg.vue'
-import CardBasePlatforms from '@/components/cards/CardBasePlatforms.vue'
-import CardBaseRating from '@/components/cards/CardBaseRating.vue'
+import BaseImg from '@/components/UI/BaseImg.vue'
+import CardGamePlatforms from '@/components/Cards/CardGamePlatforms.vue'
+import CardGameRating from '@/components/Cards/CardGameRating.vue'
 import { computed } from 'vue'
 import { IGame } from '@/types/interfaces/IGames'
 
@@ -16,19 +16,9 @@ const displayName = computed(() => {
 </script>
 
 <template>
-    <router-link
-        :to="props.to"
-        v-if="game"
-        class="cardBase"
-    >
+    <router-link :to="props.to" v-if="game" class="cardBase">
         <div class="cardBase__img-wrap">
-            <BaseImg
-                :src="game.image"
-                :alt="game.name"
-                :width="300"
-                :height="400"
-                class="cardBase__img"
-            />
+            <BaseImg :src="game.image" :alt="game.name" :width="300" :height="400" class="cardBase__img" />
         </div>
         <p class="cardBase__name">
             {{ displayName }}
@@ -36,9 +26,9 @@ const displayName = computed(() => {
 
         <div class="cardBase__wrap">
             <div class="cardBase__platforms">
-                <CardBasePlatforms :platforms="game.platforms" />
+                <CardGamePlatforms :platforms="game.platforms" />
             </div>
-            <CardBaseRating :rating="game.rating" />
+            <CardGameRating :rating="game.rating" />
         </div>
     </router-link>
 </template>
@@ -72,6 +62,7 @@ const displayName = computed(() => {
         overflow: hidden;
 
         transition: transform 0.6s ease-in-out;
+
         @media (max-width: 460px) {
             aspect-ratio: 16 / 9;
         }

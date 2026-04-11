@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BaseTitle from '@/components/base/BaseTitle.vue'
+import BaseTitle from '@/components/UI/BaseTitle.vue'
 
 defineProps<{
     genreId: number

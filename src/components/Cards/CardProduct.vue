@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { IGame } from '@/types/interfaces/IGames'
-import CardBaseRating from '@/components/cards/CardBaseRating.vue'
-import BaseImg from '../base/BaseImg.vue'
+import CardGameRating from '@/components/Cards/CardGameRating.vue'
+import BaseImg from '../UI/BaseImg.vue'
 defineProps<{
     game: IGame
     to?: any
@@ -11,25 +11,13 @@ defineProps<{
 <template>
     <router-link :to="to" class="productCard">
         <div class="productCard__picture">
-            <BaseImg
-                :src="game.image"
-                :alt="game.name"
-                :width="250"
-                :height="360"
-                class="productCard__img"
-            />
-            <CardBaseRating
-                :rating="game.rating"
-                class="productCard__rating productCard__rating--column"
-            />
+            <BaseImg :src="game.image" :alt="game.name" :width="250" :height="360" class="productCard__img" />
+            <CardGameRating :rating="game.rating" class="productCard__rating productCard__rating--column" />
         </div>
         <p class="productCard__name">
             {{ game.name }}
         </p>
-        <CardBaseRating
-            :rating="game.rating"
-            class="productCard__rating productCard__rating--row"
-        />
+        <CardGameRating :rating="game.rating" class="productCard__rating productCard__rating--row" />
     </router-link>
 </template>
 
@@ -42,10 +30,11 @@ defineProps<{
             }
         }
     }
+
     &__img {
         aspect-ratio: 3 / 4;
         object-fit: cover;
-        transition: transform .6s  ease-in-out;
+        transition: transform .6s ease-in-out;
     }
 
     &__picture {
@@ -53,6 +42,7 @@ defineProps<{
         margin-bottom: 12px;
         position: relative;
         overflow: hidden;
+
         &::after {
             content: '';
             pointer-events: none;

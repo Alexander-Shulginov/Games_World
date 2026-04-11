@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CardRating from '@/components/cards/CardRating.vue'
-import BaseLoader from '@/components/base/BaseLoader.vue'
+import CardRating from '@/components/Cards/CardRating.vue'
+import BaseLoader from '@/components/UI/BaseLoader.vue'
 import { IGame } from '@/types/interfaces/IGames'
 
 defineProps<{
@@ -10,14 +10,14 @@ defineProps<{
 </script>
 
 <template>
-    <div class="gamesColumn">
+    <div class="catalogGamesList">
         <BaseLoader v-if="loading" />
-        <CardRating v-for="game in games" :key="game.id" :game="game" class="gamesColumn__item" />
+        <CardRating v-for="game in games" :key="game.id" :game="game" class="catalogGamesList__item" />
     </div>
 </template>
 
 <style lang="scss" scoped>
-.gamesColumn {
+.catalogGamesList {
     position: relative;
 
     border-radius: 8px;

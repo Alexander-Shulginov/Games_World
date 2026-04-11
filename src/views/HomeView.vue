@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
 import { useHead } from '@vueuse/head'
-import MainCarousel from '@/components/MainCarousel.vue'
-import GenreList from '@/components/GenreList.vue'
+import MainCarousel from '@/components/Home/MainCarousel.vue'
+import GenreList from '@/components/GenreList/GenreList.vue'
 import witcherImg from '@/assets/img/main/witcher.webp'
 
-const CatalogGames = defineAsyncComponent(() => import('@/components/CatalogGames.vue'))
-const PopularCategory = defineAsyncComponent(() => import('@/components/PopularCategory.vue'))
-// const PromoGame = defineAsyncComponent(() => import('@/components/PromoGame.vue'))
-const PopularGames = defineAsyncComponent(() => import('@/components/PopularGames.vue'))
-const BaseScrollToTop = defineAsyncComponent(() => import('@/components/base/BaseScrollToTop.vue'))
-const ProjectInfo = defineAsyncComponent(() => import('@/components/ProjectInfo.vue'))
-// const BlogSection = defineAsyncComponent(() => import('@/components/BlogSection.vue'))
+const CatalogGames = defineAsyncComponent(() => import('@/components/CatalogGames/CatalogGames.vue'))
+const PopularCategory = defineAsyncComponent(() => import('@/components/PopularCategory/PopularCategory.vue'))
+const PopularGames = defineAsyncComponent(() => import('@/components/PopularGames/PopularGames.vue'))
+const BaseScrollToTop = defineAsyncComponent(() => import('@/components/UI/BaseScrollToTop.vue'))
+const ProjectInfo = defineAsyncComponent(() => import('@/components/Home/ProjectInfo.vue'))
 
 useHead({
     link: [
@@ -36,8 +34,6 @@ useHead({
         <PopularGames />
         <PopularCategory />
         <CatalogGames />
-        <!-- <PromoGame /> -->
-        <!-- <BlogSection /> -->
         <ProjectInfo />
         <BaseScrollToTop />
     </section>

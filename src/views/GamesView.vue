@@ -5,11 +5,11 @@ import { useQuery } from '@tanstack/vue-query'
 import { fetchGames } from '@/services/gamesService'
 import { useRoute } from 'vue-router'
 
-import SearchField from '@/components/SearchField.vue'
-import ListGamesTopCardsLayout from '@/components/ListGamesCardsLayout.vue'
-import ListGamesResults from '@/components/ListGamesResults.vue'
-import ListGamesContent from '@/components/ListGamesContent.vue'
-import ListGamesNavigation from '@/components/ListGamesNavigation.vue'
+import SearchField from '@/components/UI/SearchField.vue'
+import ListGamesTopCardsLayout from '@/components/ListGames/ListGamesCardsLayout.vue'
+import ListGamesResults from '@/components/ListGames/ListGamesResults.vue'
+import ListGamesContent from '@/components/ListGames/ListGamesContent.vue'
+import ListGamesNavigation from '@/components/ListGames/ListGamesNavigation.vue'
 
 const route = useRoute()
 const selectedRadio = ref('')
