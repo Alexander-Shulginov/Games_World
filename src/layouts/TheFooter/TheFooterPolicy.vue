@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BaseText from '@/components/base/BaseText.vue'
+import BaseText from '@/components/UI/BaseText.vue'
 import { APP_CONFIG } from '@/config/app.config';
 import { getCurrentYear } from '@/utils/getCurrentYear';
 </script>

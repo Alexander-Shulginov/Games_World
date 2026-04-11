@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import BaseLogo from '@/components/base/BaseLogo.vue'
+import BaseLogo from '@/components/UI/BaseLogo.vue'
 import TheHeaderNav from '@/layouts/TheHeader/TheHeaderNav.vue'
-import BaseGitHubLink from '@/components/base/BaseGitHubLink.vue'
+import BaseGitHubLink from '@/components/UI/BaseGitHubLink.vue'
 </script>
 
 <template>

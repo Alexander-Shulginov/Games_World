@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseTitle from '@/components/base/BaseTitle.vue'
+import BaseTitle from '@/components/UI/BaseTitle.vue'
 
 const isCompact = ref<boolean>(true)
 

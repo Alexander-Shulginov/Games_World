@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { IListGames } from '@/types/interfaces/IGames'
-import BaseTitle from '@/components/base/BaseTitle.vue'
-import GameInfoCard from './GameInfoCard.vue'
+import BaseTitle from '@/components/UI/BaseTitle.vue'
+import CardGameCompact from '@/components/Cards/CardGameCompact.vue'
 
 defineProps<{
     data: IListGames | undefined
@@ -13,7 +13,7 @@ defineProps<{
     <section v-if="data?.results.length" class="gameSeries">
         <BaseTitle class="gameSeries__title" :tag="'h2'">{{ title }}</BaseTitle>
         <div class="gameSeries__grid">
-            <GameInfoCard v-for="game in data.results" :key="game.id" :data="game" />
+            <CardGameCompact v-for="game in data.results" :key="game.id" :data="game" />
         </div>
     </section>
 </template>

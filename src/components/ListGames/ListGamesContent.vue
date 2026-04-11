@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import CardProduct from '@/components/cards/CardProduct.vue'
-import BaseLoader from '@/components/base/BaseLoader.vue'
-import ListGamesError from '@/components/ListGamesError.vue'
+import CardProduct from '@/components/Cards/CardProduct.vue'
+import BaseLoader from '@/components/UI/BaseLoader.vue'
+import ListGamesError from '@/components/ListGames/ListGamesError.vue'
 import { IListGames } from '@/types/interfaces/IGames'
 
 defineProps<{

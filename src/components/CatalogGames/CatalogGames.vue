@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CatalogGamesItem from '@/components/CatalogGamesItem.vue'
+import CatalogGamesItem from '@/components/CatalogGames/CatalogGamesItem.vue'
 import { fetchGames } from '@/services/gamesService'
 import { useQuery } from '@tanstack/vue-query'
 

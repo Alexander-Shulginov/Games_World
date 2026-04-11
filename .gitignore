@@ -26,3 +26,6 @@ repomix-output.txt
 *.njsproj
 *.sln
 *.sw?
+
+*.tsbuildinfo
+stats.html

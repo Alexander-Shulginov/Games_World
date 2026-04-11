@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { Pagination } from 'swiper/modules'
 import { useSwiper } from '@/composables/useSwiper'
 import { mainContent } from '@/data/mainContent'
-import CardFullscreen from '@/components/cards/CardFullscreen.vue'
+import CardFullscreen from '@/components/Cards/CardFullscreen.vue'
 
 const swiperFullscreen = ref<HTMLElement | null>(null)
 

@@ -3,8 +3,8 @@ import { nextTick, ref, watch } from 'vue'
 import { Navigation } from 'swiper/modules'
 import { useSwiper } from '@/composables/useSwiper'
 import { IListGames } from '@/types/interfaces/IGames'
-import CardBase from '@/components/cards/CardBase.vue'
-import BaseLoader from '@/components/base/BaseLoader.vue'
+import CardGame from '@/components/Cards/CardGame.vue'
+import BaseLoader from '@/components/UI/BaseLoader.vue'
 
 const props = defineProps<{
     data: IListGames | undefined
@@ -44,7 +44,7 @@ watch([() => props.data, swiperPopular], (newData) => {
         <div v-if="data" class="swiper" ref="swiperPopular">
             <ul class="popularGames__list swiper-wrapper">
                 <li v-for="game in data.results" :key="game.id" class="swiper-slide">
-                    <CardBase :game="game" :to="{ name: 'Game', params: { id: game.id } }" />
+                    <CardGame :game="game" :to="{ name: 'Game', params: { id: game.id } }" />
                 </li>
             </ul>
         </div>

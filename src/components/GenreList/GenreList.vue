@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { Pagination } from 'swiper/modules'
 import { useSwiper } from '@/composables/useSwiper'
 import { genreList } from '@/types/genres'
-import GenreListCard from '@/components/GenreListCard.vue'
+import GenreListCard from '@/components/GenreList/GenreListCard.vue'
 
 const swiperGenre = ref<HTMLElement | null>(null)
 

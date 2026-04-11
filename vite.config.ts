@@ -26,8 +26,8 @@ export default defineConfig({
         rollupOptions: {
             plugins: [
                 visualizer({
-                    filename: 'stats.html', // куда сохранить отчёт
-                    open: false, // сразу открыть в браузере
+                    filename: 'stats.html',
+                    open: false,
                     gzipSize: true,
                     brotliSize: true
                 })
@@ -41,6 +41,13 @@ export default defineConfig({
             },
         },
         sourcemap: 'hidden',
+    },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                silenceDeprecations: ['legacy-js-api']
+            }
+        }
     },
     server: {
         proxy: {

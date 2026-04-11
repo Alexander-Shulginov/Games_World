@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useQuery } from '@tanstack/vue-query'
 import { fetchGames } from '@/services/gamesService'
-import PopularCategoryNav from '@/components/PopularCategoryNav.vue'
-import PopularCategoryCarousel from '@/components/PopularCategoryCarousel.vue'
+import PopularCategoryNav from '@/components/PopularCategory/PopularCategoryNav.vue'
+import PopularCategoryCarousel from '@/components/PopularCategory/PopularCategoryCarousel.vue'
 import { computed, ref } from 'vue'
 
 const genre = ref<string>('racing')

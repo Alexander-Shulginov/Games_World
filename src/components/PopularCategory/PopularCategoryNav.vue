@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BaseTitle from '@/components/base/BaseTitle.vue'
-import PopularCategoryNavList from '@/components/PopularCategoryNavList.vue'
+import BaseTitle from '@/components/UI/BaseTitle.vue'
+import PopularCategoryNavList from '@/components/PopularCategory/PopularCategoryNavList.vue'
 
 const emit = defineEmits(['getSlugActiveItem'])
 

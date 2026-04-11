@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import AllGenresList from '@/components/AllGenresList.vue'
-import BaseTitle from '@/components/base/BaseTitle.vue'
-import PromoGame from '@/components/PromoGame.vue'
+import AllGenresList from '@/components/AllGenreList/AllGenresList.vue'
+import BaseTitle from '@/components/UI/BaseTitle.vue'
 </script>
 
 <template>
@@ -10,7 +9,6 @@ import PromoGame from '@/components/PromoGame.vue'
         <div class="allGenres">
             <AllGenresList class="allGenres__genre" />
         </div>
-        <!-- <PromoGame /> -->
     </section>
 </template>
 
