@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IconClose from '@/components/icons/IconClose.vue'
+import SvgIcon from '@/components/UI/SvgIcon.vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -15,7 +15,7 @@ const resetQuery = () => {
 
 <template>
     <button v-show="hasQueryParams" @click="resetQuery" class="filters-reset" type="button">
-        <IconClose :width="13" :height="14" />
+        <SvgIcon name="common-close" :size="13" />
     </button>
 </template>
 

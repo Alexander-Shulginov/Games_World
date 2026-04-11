@@ -34,6 +34,7 @@
     "sass-embedded": "^1.80.3",
     "typescript": "^5.5.3",
     "vite": "^5.4.8",
+    "vite-plugin-svg-icons": "^2.0.1",
     "vitest": "^4.1.2",
     "vue-tsc": "^2.1.6"
   }

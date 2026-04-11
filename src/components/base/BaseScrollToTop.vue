@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import IconToTop from '@/components/icons/IconToTop.vue'
+import SvgIcon from '@/components/UI/SvgIcon.vue'
 
 const percent = ref(0)
 
@@ -29,7 +29,7 @@ const scrollToTop = () => {
             :style="`background: conic-gradient(#6d4eec 0% ${percent}%, #212121 0% 100%)`"
         ></button>
         <div class="goTop__wrap">
-            <IconToTop :width="18" :height="20" class="goTop__icon" />
+            <SvgIcon name="common-to-top" :size="14" class="goTop__icon" />
         </div>
     </div>
 </template>

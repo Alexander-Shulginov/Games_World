@@ -3,7 +3,7 @@ import { computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { IListGames } from '@/types/interfaces/IGames'
 import { removeUrlQuery, updateUrlQuery } from '@/utils/updateUrlQuery'
-import IconPixelArrow from '@/components/icons/IconPixelArrow.vue'
+import SvgIcon from '@/components/UI/SvgIcon.vue'
 
 const props = defineProps<{
     isFetching: boolean
@@ -49,9 +49,9 @@ const decreasePage = () => {
             class="gamesNav__btn"
             type="button"
         >
-            <IconPixelArrow style="transform: rotate(180deg)" />
-            <IconPixelArrow style="transform: rotate(180deg)" />
-            <IconPixelArrow style="transform: rotate(180deg)" />
+            <SvgIcon name="common-pixel-arrow" :size="22" class="gamesNav__arrow gamesNav__arrow--left" />
+            <SvgIcon name="common-pixel-arrow" :size="22" class="gamesNav__arrow gamesNav__arrow--left" />
+            <SvgIcon name="common-pixel-arrow" :size="22" class="gamesNav__arrow gamesNav__arrow--left" />
         </button>
         <button
             :disabled="games?.next === null"
@@ -59,9 +59,9 @@ const decreasePage = () => {
             class="gamesNav__btn"
             type="button"
         >
-            <IconPixelArrow />
-            <IconPixelArrow />
-            <IconPixelArrow />
+            <SvgIcon name="common-pixel-arrow" :size="22" class="gamesNav__arrow" />
+            <SvgIcon name="common-pixel-arrow" :size="22" class="gamesNav__arrow" />
+            <SvgIcon name="common-pixel-arrow" :size="22" class="gamesNav__arrow" />
         </button>
     </div>
 </template>
@@ -108,6 +108,10 @@ const decreasePage = () => {
                 background-color: var(--color-dark-second);
             }
         }
+    }
+
+    &__arrow--left {
+        transform: rotate(180deg);
     }
 }
 </style>

@@ -1,11 +1,19 @@
 /// <reference types="vitest" />
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vitest/config'
-import vue from '@vitejs/plugin-vue'
 import { visualizer } from 'rollup-plugin-visualizer'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import vue from '@vitejs/plugin-vue'
+import path from 'path'
 
 export default defineConfig({
-    plugins: [vue()],
+    plugins: [
+        vue(),
+        createSvgIconsPlugin({
+            iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],
+            symbolId: 'icon-[dir]-[name]',
+        }),
+    ],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src/', import.meta.url))

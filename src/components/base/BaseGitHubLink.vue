@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IconGitHub from '@/components/icons/IconGitHub.vue'
+import SvgIcon from '@/components/UI/SvgIcon.vue'
 import { APP_CONFIG } from '@/config/app.config';
 </script>
 
@@ -11,7 +11,7 @@ import { APP_CONFIG } from '@/config/app.config';
         class="git-link"
         aria-label="Projects on Github"
     >
-        <IconGitHub />
+        <SvgIcon name="common-github-logo" />
     </a>
 </template>
 
@@ -20,6 +20,11 @@ import { APP_CONFIG } from '@/config/app.config';
     width: 22px;
     height: 22px;
     transition: opacity 0.2s ease-in-out;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
     @media (any-hover: hover) {
         &:hover {
             opacity: 0.8;

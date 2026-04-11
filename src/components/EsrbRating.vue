@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import { type Component } from 'vue'
-import IconEsrbAdult from '@/components/icons/esrb/IconEsrbAdult.vue'
-import IconEsrbEveryone from '@/components/icons/esrb/IconEsrbEveryone.vue'
-import IconEsrbEveryone10 from '@/components/icons/esrb/IconEsrbEveryone10.vue'
-import IconEsrbMature from '@/components/icons/esrb/IconEsrbMature.vue'
-import IconEsrbPending from '@/components/icons/esrb/IconEsrbPending.vue'
-import IconEsrbTeen from '@/components/icons/esrb/IconEsrbTeen.vue'
+import SvgIcon from '@/components/UI/SvgIcon.vue'
 
 defineProps<{
     esrb?: {
@@ -13,18 +7,28 @@ defineProps<{
     }
 }>()
 
-const esrbRatingsIcons: Record<number, Component> = {
-    1: IconEsrbEveryone,
-    2: IconEsrbEveryone10,
-    3: IconEsrbTeen,
-    4: IconEsrbMature,
-    5: IconEsrbAdult,
-    6: IconEsrbPending
+const esrbRatingsIcons: Record<number, string> = {
+    1: 'everyone',
+    2: 'everyone10',
+    3: 'teen',
+    4: 'mature',
+    5: 'adult',
+    6: 'pending'
 }
 </script>
 
 <template>
-    <component v-if="esrb" :is="esrbRatingsIcons[esrb?.id]" />
+    <SvgIcon v-if="esrb && esrbRatingsIcons[esrb.id]" :name="`esrb-${esrbRatingsIcons[esrb.id]}`" class="esrb-icon" />
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.esrb-icon {
+    width: 46px;
+    height: 83px;
+
+    @media (max-width: 768px) {
+        width: 28px;
+        height: 45px;
+    }
+}
+</style>
