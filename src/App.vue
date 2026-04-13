@@ -20,7 +20,7 @@ const isInert = computed(() => {
 </script>
 
 <template>
-    <div class="wrapper" :inert="isInert">
+    <div class="wrapper">
         <TheHeader />
         <main :class="classes">
             <router-view name="filters"></router-view>

@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-
-const props = defineProps<{
-    state?: boolean
-}>()
+import { onMounted, onUnmounted, ref } from 'vue'
 
 const isOpen = ref(false)
 
@@ -11,27 +7,32 @@ const toggleBurger = () => {
     isOpen.value = !isOpen.value
 }
 
-watch(
-    () => props.state,
-    (n) => {
-        if (n === false) {
-            isOpen.value = false
-        }
-    }
-)
+let mediaQuery: MediaQueryList | null = null
 
-const mediaQuery = window.matchMedia('(max-width: 1024px)')
-
-const handleMediaChange = (e: any) => {
+const handleMediaChange = () => {
     isOpen.value = false
 }
 
-mediaQuery.addEventListener('change', handleMediaChange)
-handleMediaChange(mediaQuery)
+onMounted(() => {
+    mediaQuery = window.matchMedia('(max-width: 1024px)')
+    mediaQuery.addEventListener('change', handleMediaChange)
+    handleMediaChange()
+})
+
+onUnmounted(() => {
+    mediaQuery?.removeEventListener('change', handleMediaChange)
+})
 </script>
 
 <template>
-    <button @click="toggleBurger" class="burger" :class="{ 'burger--active': isOpen }">
+    <button
+        type="button"
+        @click="toggleBurger"
+        class="burger"
+        :class="{ 'burger--active': isOpen }"
+        :aria-pressed="isOpen"
+        aria-label="Toggle menu"
+    >
         <span></span>
         <span></span>
         <span></span>

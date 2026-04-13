@@ -10,7 +10,8 @@ interface GameData {
 }
 
 defineProps<{
-    data: GameData
+    data: GameData,
+    isFirstImage: boolean
 }>()
 </script>
 
@@ -22,7 +23,7 @@ defineProps<{
             alt="Game wallpaper"
             width="1410"
             height="793"
-            fetchpriority="high"
+            :fetchpriority="isFirstImage ? 'high' : undefined"
         />
         <div class="cardFull__wrap">
             <img

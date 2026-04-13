@@ -7,7 +7,15 @@ import IconGameDiablo from '@/assets/img/main/diablo-logo.webp'
 import IconGameDoom from '@/assets/img/main/doom-logo.webp'
 import doomImg from '@/assets/img/main/doom.webp'
 
-export const mainContent = [
+export interface IMainContent {
+    id: number
+    img: string
+    icon: string
+    descr: string
+    date: string
+}
+
+export const mainContent: IMainContent[] = [
     {
         id: 3328,
         img: witcherImg,

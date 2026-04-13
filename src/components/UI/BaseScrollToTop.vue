@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import SvgIcon from '@/components/UI/SvgIcon.vue'
 
 const percent = ref(0)
 
-window.addEventListener('scroll', () => {
+const handleScroll = () => {
     const scrollTop = window.scrollY
     const documentHeight = document.documentElement.scrollHeight
     const windowHeight = window.innerHeight
@@ -12,11 +12,20 @@ window.addEventListener('scroll', () => {
     const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100
 
     percent.value = scrollPercentage
-})
+}
 
 const scrollToTop = () => {
     window.scrollTo({ top: 0 })
 }
+
+onMounted(() => {
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+})
+
+onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <template>

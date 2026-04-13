@@ -2,26 +2,22 @@
 import BaseImg from '@/components/UI/BaseImg.vue'
 import CardGamePlatforms from '@/components/Cards/CardGamePlatforms.vue'
 import CardGameRating from '@/components/Cards/CardGameRating.vue'
-import { computed } from 'vue'
-import { IGame } from '@/types/interfaces/IGames'
+import type { IGame } from '@/types/interfaces/IGames'
+import { RouteLocationRaw } from 'vue-router'
 
-const props = defineProps<{
+defineProps<{
     game: IGame
-    to?: any
+    to: RouteLocationRaw
 }>()
-
-const displayName = computed(() => {
-    return props.game.name ? props.game.name : 'No name'
-})
 </script>
 
 <template>
-    <router-link :to="props.to" v-if="game" class="cardBase">
+    <router-link :to="to" class="cardBase">
         <div class="cardBase__img-wrap">
             <BaseImg :src="game.image" :alt="game.name" :width="300" :height="400" class="cardBase__img" />
         </div>
         <p class="cardBase__name">
-            {{ displayName }}
+            {{ game.name || 'No name' }}
         </p>
 
         <div class="cardBase__wrap">

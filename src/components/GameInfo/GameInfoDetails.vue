@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IGameById } from '@/types/interfaces/IGameById'
-import BaseRating from '@/components/UI/BaseRating.vue'
+import StarRating from '@/components/Common/StarRating.vue'
 import { formatDate } from '@/utils/formatDate'
 
 defineProps<{
@@ -13,7 +13,7 @@ defineProps<{
         <div class="gameDetails__item">
             <span class="gameDetails__key">Rating</span>
             <div class="gameDetails__value">
-                <BaseRating :rating="info.rating" />
+                <StarRating :rating="info.rating" />
             </div>
         </div>
 
