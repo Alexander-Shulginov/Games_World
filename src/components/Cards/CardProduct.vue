@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { IGame } from '@/types/interfaces/IGames'
 import CardGameRating from '@/components/Cards/CardGameRating.vue'
-import BaseImg from '../UI/BaseImg.vue'
+import BaseImg from '@/components/UI/BaseImg.vue'
+import type { IGame } from '@/types/interfaces/IGames'
+import { RouteLocationRaw } from 'vue-router'
+
 defineProps<{
     game: IGame
-    to?: any
+    to: RouteLocationRaw
 }>()
 </script>
 

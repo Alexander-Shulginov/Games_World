@@ -16,7 +16,7 @@ defineProps<{
 </script>
 
 <template>
-    <router-link v-if="data" :to="{ name: 'Game', params: { id: data.id } }" class="gameSeriesCard">
+    <router-link :to="{ name: 'Game', params: { id: data.id } }" class="gameSeriesCard">
         <div class="gameSeriesCard__img-wrap">
             <BaseImg
                 :src="data.image"

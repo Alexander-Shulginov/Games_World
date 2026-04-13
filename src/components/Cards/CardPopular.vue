@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { IGame } from '@/types/interfaces/IGames'
+import type { IGame } from '@/types/interfaces/IGames'
 import BaseImg from '@/components/UI/BaseImg.vue'
 
 defineProps<{
-    data: IGame | undefined
+    data: IGame
 }>()
 </script>
 
 <template>
     <router-link
         :to="{ name: 'Game', params: { id: data.id } }"
-        v-if="data"
         class="cardPopular"
     >
         <div class="cardPopular__img-wrap">
@@ -22,7 +21,7 @@ defineProps<{
                 class="cardPopular__img"
             />
         </div>
-        <p class="cardPopular__name">{{ data.name ? data.name : 'No name' }}</p>
+        <p class="cardPopular__name">{{ data.name || 'No name' }}</p>
     </router-link>
 </template>
 

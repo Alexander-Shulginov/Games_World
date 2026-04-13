@@ -6,7 +6,6 @@ defineProps<{
         id: number
         name: string
         img: string
-        slug: string
     }
 }>()
 </script>

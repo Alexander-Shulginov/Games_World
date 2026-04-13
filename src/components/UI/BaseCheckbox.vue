@@ -3,7 +3,7 @@ defineProps<{
     id: string
     text: string
     value: number
-    isDisabled?: false
+    isDisabled?: boolean
 }>()
 
 const platformsModel = defineModel()
@@ -32,6 +32,7 @@ const platformsModel = defineModel()
     align-items: center;
     gap: 8px;
     cursor: pointer;
+
     @media (any-hover: hover) {
         &:hover {
             .baseCheckbox__label {
@@ -85,7 +86,6 @@ const platformsModel = defineModel()
         width: 100%;
         color: rgba(255, 255, 255, 0.85);
         cursor: pointer;
-
         transition: color 0.3s ease-in-out;
     }
 }

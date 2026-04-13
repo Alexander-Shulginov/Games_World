@@ -14,7 +14,7 @@ useSwiper(swiperFullscreen, {
     speed: 1000,
     slidesPerView: 1,
     pagination: {
-        el: '.swiper-pagination'
+        el: '.swiper-pagination.carousel-pagination'
     }
 })
 </script>
@@ -22,9 +22,9 @@ useSwiper(swiperFullscreen, {
 <template>
     <div class="swiper mainCarousel" ref="swiperFullscreen">
         <div class="swiper-wrapper">
-            <CardFullscreen v-for="(game, index) in mainContent" :data="game" :id="index" class="swiper-slide" />
+            <CardFullscreen v-for="(game, index) in mainContent" :key="game.id" :data="game" :is-first-image="index === 0" class="swiper-slide" />
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-pagination carousel-pagination"></div>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/UI/SvgIcon.vue'
-import { APP_CONFIG } from '@/config/app.config';
+import { APP_CONFIG } from '@/config/app.config'
 </script>
 
 <template>

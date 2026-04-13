@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/UI/SvgIcon.vue'
+import { RouteName } from '@/router/router';
 </script>
 
 <template>
-    <a href="/" class="logo" aria-label="Main logo">
-        <img src="@/assets/img/logo/logo.png" width="60" height="60" alt="Main logo" />
+    <RouterLink :to="{ name: RouteName.Home }" class="logo" aria-label="Main logo">
+        <img src="/images/logo.webp" width="60" height="60" alt="Main logo" />
         <SvgIcon name="common-logo" class="logo__text" />
-    </a>
+    </RouterLink>
 </template>
 
 <style lang="scss" scoped>
