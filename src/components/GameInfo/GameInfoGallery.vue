@@ -11,6 +11,7 @@ defineProps<{
 }>()
 
 const swiperSimilar = ref<HTMLElement | null>(null)
+const fancyboxSelector = '[data-fancybox]'
 
 const { initSwiper, destroySwiper } = useSwiper(swiperSimilar, {
     modules: [Pagination],
@@ -37,25 +38,27 @@ const { initSwiper, destroySwiper } = useSwiper(swiperSimilar, {
     pagination: { el: '.swiper-pagination' }
 })
 
-Fancybox.bind('[data-fancybox]', {
-    contentClick: false,
-    Hash: false,
-    Toolbar: {
-        display: {
-            left: [],
-            middle: [],
-            right: ['close']
-        }
-    }
-})
-
 onMounted(() => {
     nextTick(() => {
+        Fancybox.bind(fancyboxSelector, {
+            Hash: false,
+            Carousel: {
+                Toolbar: {
+                    display: {
+                        left: [],
+                        middle: [],
+                        right: ['close']
+                    }
+                }
+            }
+        })
         initSwiper()
     })
 })
 
 onUnmounted(() => {
+    Fancybox.unbind(fancyboxSelector)
+    Fancybox.close()
     destroySwiper()
 })
 </script>

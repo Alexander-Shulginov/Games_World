@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BaseBurger from '@/components/UI/BaseBurger.vue'
 defineEmits<{
-    click: boolean
+    click: []
 }>()
 </script>
 
