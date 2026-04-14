@@ -1,20 +1,29 @@
 <script setup lang="ts">
-import { useQuery } from '@tanstack/vue-query'
 import CardGenre from '@/components/Cards/CardGenre.vue'
-import { fetchGenres } from '@/services/genresService'
+import BaseLoader from '@/components/UI/BaseLoader.vue'
+import type { IGenres } from '@/types/interfaces/IGenres'
 
-const { data } = useQuery({
-    queryKey: ['getGenres'],
-    queryFn: fetchGenres
-})
+defineProps<{
+    isFetching: boolean
+    data: IGenres[] | undefined
+    isError: boolean
+    errorMessage?: string
+}>()
 </script>
 
 <template>
-    <ul v-if="data" class="genresList">
-        <li v-for="genre in data" :key="genre.id">
-            <CardGenre :data="genre" />
-        </li>
-    </ul>
+    <div class="allGenres__wrapper">
+        <BaseLoader v-if="isFetching" />
+        <ul v-else-if="data?.length" class="genresList">
+            <li v-for="genre in data" :key="genre.id">
+                <CardGenre :data="genre" />
+            </li>
+        </ul>
+        <div v-else-if="isError" class="error">
+            {{ errorMessage ?? 'Failed to load genres' }}
+        </div>
+        <div v-else class="empty">No genres found</div>
+    </div>
 </template>
 
 <style lang="scss" scoped>

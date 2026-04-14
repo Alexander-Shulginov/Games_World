@@ -1,23 +1,24 @@
 <script setup lang="ts">
-import CatalogGamesItem from '@/components/CatalogGames/CatalogGamesItem.vue'
+import CatalogGamesList from '@/components/CatalogGames/CatalogGamesList.vue'
+import BaseTitle from '@/components/UI/BaseTitle.vue'
 import { fetchGames } from '@/services/gamesService'
 import { useQuery } from '@tanstack/vue-query'
 
-const { data: releasedGames, isPending: releasedGamesLoaded } = useQuery({
-    queryKey: ['released'],
+const date = new Date();
 
+const { data: releasedGames, isPending: releasedGamesPending } = useQuery({
+    queryKey: ['released'],
     queryFn: () =>
         fetchGames({
             page_size: 5,
             ordering: '-rating',
             platforms: '4',
-            dates: '2025-03-01,2025-12-31'
+            dates: `${date.getFullYear()}-0${date.getMonth() + 1}-01,${date.getFullYear()}-12-31`
         })
 })
 
-const { data: oldGames, isPending: oldGamesLoaded } = useQuery({
+const { data: oldGames, isPending: oldGamesPending } = useQuery({
     queryKey: ['old'],
-
     queryFn: () =>
         fetchGames({
             page_size: 5,
@@ -26,7 +27,7 @@ const { data: oldGames, isPending: oldGamesLoaded } = useQuery({
         })
 })
 
-const { data: playstationGames, isPending: playStationLoaded } = useQuery({
+const { data: playstationGames, isPending: playStationPending } = useQuery({
     queryKey: ['playstation'],
     queryFn: () =>
         fetchGames({
@@ -37,7 +38,7 @@ const { data: playstationGames, isPending: playStationLoaded } = useQuery({
         })
 })
 
-const { data: xboxGames, isPending: xboxGamesLoaded } = useQuery({
+const { data: xboxGames, isPending: xboxGamesPending } = useQuery({
     queryKey: ['xbox'],
     queryFn: () =>
         fetchGames({
@@ -51,22 +52,25 @@ const { data: xboxGames, isPending: xboxGamesLoaded } = useQuery({
 
 <template>
     <div class="catalogGames">
-        <CatalogGamesItem
-            :games="releasedGames"
-            :title="'New Releases'"
-            :loading="releasedGamesLoaded"
-        />
-        <CatalogGamesItem
-            :games="playstationGames"
-            :title="'PlayStation'"
-            :loading="playStationLoaded"
-        />
-        <CatalogGamesItem :games="xboxGames" :title="'Xbox'" :loading="xboxGamesLoaded" />
-        <CatalogGamesItem
-            :games="oldGames"
-            :title="'Old school'"
-            :loading="oldGamesLoaded"
-        />
+        <div class="catalogGames__item">
+            <BaseTitle :tag="'h2'" class="catalogGames__title">New Releases</BaseTitle>
+            <CatalogGamesList :games="releasedGames?.results" :loading="releasedGamesPending" />
+        </div>
+
+        <div class="catalogGames__item">
+            <BaseTitle :tag="'h2'" class="catalogGames__title">PlayStation</BaseTitle>
+            <CatalogGamesList :games="playstationGames?.results" :loading="playStationPending" />
+        </div>
+
+        <div class="catalogGames__item">
+            <BaseTitle :tag="'h2'" class="catalogGames__title">Xbox</BaseTitle>
+            <CatalogGamesList :games="xboxGames?.results" :loading="xboxGamesPending" />
+        </div>
+
+        <div class="catalogGames__item">
+            <BaseTitle :tag="'h2'" class="catalogGames__title">Old school</BaseTitle>
+            <CatalogGamesList :games="oldGames?.results" :loading="oldGamesPending" />
+        </div>
     </div>
 </template>
 
@@ -77,6 +81,17 @@ const { data: xboxGames, isPending: xboxGamesLoaded } = useQuery({
     gap: 16px;
     margin-bottom: 86px;
     overflow: hidden;
+
+    &__title {
+        margin-bottom: 20px;
+        font-size: 18px;
+    }
+
+    &__item {
+        height: 100%;
+        overflow: hidden;
+    }
+
     @media (max-width: 1024px) {
         grid-template-columns: repeat(2, 1fr);
         margin-bottom: 66px;
