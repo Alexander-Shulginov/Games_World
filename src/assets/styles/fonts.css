@@ -19,8 +19,7 @@
 @font-face {
     font-family: 'Montserrat';
     src:
-        url('/fonts/montserrat/montserrat-semibold.woff2') format('woff2'),
-        url('/fonts/montserrat/montserrat-semibold.woff') format('woff');
+        url('/fonts/montserrat/montserrat-semibold.woff2') format('woff2');
     font-display: swap;
     font-weight: 600;
 }
@@ -28,8 +27,7 @@
 @font-face {
     font-family: 'Montserrat';
     src:
-        url('/fonts/montserrat/montserrat-bold.woff2') format('woff2'),
-        url('/fonts/montserrat/montserrat-bold.woff') format('woff');
+        url('/fonts/montserrat/montserrat-bold.woff2') format('woff2');
     font-display: swap;
     font-weight: 700;
 }

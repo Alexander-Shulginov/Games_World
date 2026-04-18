@@ -9,7 +9,7 @@ import BaseLoader from '@/components/UI/BaseLoader.vue'
 
 const route = useRoute()
 const router = useRouter()
-const genresValue = ref([])
+const genresValue = ref<string[]>([])
 const isExpand = ref(false)
 
 const { data: genres, isLoading } = useQuery({
@@ -36,9 +36,9 @@ watch(
     }
 )
 onMounted(() => {
-    if (route.query.genres) {
-        // @ts-ignore
-        genresValue.value = route.query.genres.split(',')
+    const genres = route.query.genres
+    if (typeof genres === 'string') {
+        genresValue.value = genres.split(',')
     }
 })
 </script>
