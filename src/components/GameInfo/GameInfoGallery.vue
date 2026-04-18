@@ -4,10 +4,12 @@ import { Fancybox } from '@fancyapps/ui'
 import { useSwiper } from '@/composables/useSwiper'
 import { Pagination } from 'swiper/modules'
 import '@fancyapps/ui/dist/fancybox/fancybox.css'
+import { IGameById } from '@/types/interfaces/IGameById'
+import { IListGamesScreens } from '@/types/interfaces/IGameScreens'
 
 defineProps<{
-    data: any
-    screens: any
+    data: IGameById | undefined
+    screens: IListGamesScreens[]
 }>()
 
 const swiperSimilar = ref<HTMLElement | null>(null)
@@ -67,7 +69,7 @@ onUnmounted(() => {
     <div class="gameInfo__gallery">
         <div class="swiper" ref="swiperSimilar">
             <div class="swiper-wrapper">
-                <a v-for="screen in screens" data-fancybox="gallery" :href="screen.img" class="swiper-slide"
+                <a v-for="screen, index in screens" data-fancybox="gallery" :key="index" :href="screen.img" class="swiper-slide"
                     tabindex="-1">
                     <img class="gameInfo__gallery-img" :key="screen.id" :width="screen.width" :height="screen.height"
                         :src="screen.img" :alt="data?.name" />

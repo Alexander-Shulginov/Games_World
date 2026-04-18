@@ -42,6 +42,7 @@ defineProps<{
             <a
                 :href="info.website"
                 target="_blank"
+                rel="noopener noreferrer"
                 class="gameDetails__value gameDetails__value--link"
                 >{{ info.name }}</a
             >
@@ -106,7 +107,7 @@ defineProps<{
     display: flex;
     flex-direction: column;
     gap: 16px;
-    
+
     @media (max-width: 768px){
         padding: 12px;
     }

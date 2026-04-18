@@ -10,7 +10,7 @@ const route = useRoute()
 const router = useRouter()
 
 const searchQuery = ref(route.query.search || '')
-let timeout: any = null
+let timeout: ReturnType<typeof setTimeout> | undefined
 
 useQuery({
     queryKey: ['searchGames', route.query],

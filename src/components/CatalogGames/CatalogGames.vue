@@ -6,18 +6,18 @@ import { useQuery } from '@tanstack/vue-query'
 
 const date = new Date();
 
-const { data: releasedGames, isPending: releasedGamesPending } = useQuery({
+const { data: releasedGames, isFetching: releasedGamesFetching } = useQuery({
     queryKey: ['released'],
     queryFn: () =>
         fetchGames({
             page_size: 5,
             ordering: '-rating',
             platforms: '4',
-            dates: `${date.getFullYear()}-0${date.getMonth() + 1}-01,${date.getFullYear()}-12-31`
+            dates: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-01,${date.getFullYear()}-12-31`
         })
 })
 
-const { data: oldGames, isPending: oldGamesPending } = useQuery({
+const { data: oldGames, isFetching: oldGamesFetching } = useQuery({
     queryKey: ['old'],
     queryFn: () =>
         fetchGames({
@@ -27,7 +27,7 @@ const { data: oldGames, isPending: oldGamesPending } = useQuery({
         })
 })
 
-const { data: playstationGames, isPending: playStationPending } = useQuery({
+const { data: playstationGames, isFetching: playStationFetching } = useQuery({
     queryKey: ['playstation'],
     queryFn: () =>
         fetchGames({
@@ -38,7 +38,7 @@ const { data: playstationGames, isPending: playStationPending } = useQuery({
         })
 })
 
-const { data: xboxGames, isPending: xboxGamesPending } = useQuery({
+const { data: xboxGames, isFetching: xboxGamesFetching } = useQuery({
     queryKey: ['xbox'],
     queryFn: () =>
         fetchGames({
@@ -54,22 +54,22 @@ const { data: xboxGames, isPending: xboxGamesPending } = useQuery({
     <div class="catalogGames">
         <div class="catalogGames__item">
             <BaseTitle :tag="'h2'" class="catalogGames__title">New Releases</BaseTitle>
-            <CatalogGamesList :games="releasedGames?.results" :loading="releasedGamesPending" />
+            <CatalogGamesList :games="releasedGames?.results" :loading="releasedGamesFetching" />
         </div>
 
         <div class="catalogGames__item">
             <BaseTitle :tag="'h2'" class="catalogGames__title">PlayStation</BaseTitle>
-            <CatalogGamesList :games="playstationGames?.results" :loading="playStationPending" />
+            <CatalogGamesList :games="playstationGames?.results" :loading="playStationFetching" />
         </div>
 
         <div class="catalogGames__item">
             <BaseTitle :tag="'h2'" class="catalogGames__title">Xbox</BaseTitle>
-            <CatalogGamesList :games="xboxGames?.results" :loading="xboxGamesPending" />
+            <CatalogGamesList :games="xboxGames?.results" :loading="xboxGamesFetching" />
         </div>
 
         <div class="catalogGames__item">
             <BaseTitle :tag="'h2'" class="catalogGames__title">Old school</BaseTitle>
-            <CatalogGamesList :games="oldGames?.results" :loading="oldGamesPending" />
+            <CatalogGamesList :games="oldGames?.results" :loading="oldGamesFetching" />
         </div>
     </div>
 </template>

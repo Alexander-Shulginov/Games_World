@@ -9,7 +9,7 @@ import BaseLoader from '@/components/UI/BaseLoader.vue'
 
 const route = useRoute()
 const router = useRouter()
-const platformValue = ref([])
+const platformValue = ref<string[]>([])
 const isExpand = ref(false)
 
 const { data: platforms, isLoading } = useQuery({
@@ -32,17 +32,16 @@ watch(
     (newValue) => {
         if (!newValue) {
             platformValue.value = []
-        } else {
-            // @ts-ignore
-            platformValue.value = route.query.parent_platforms.split(',')
+        } else if (typeof newValue === 'string') {
+            platformValue.value = newValue.split(',')
         }
     }
 )
 
 onMounted(() => {
-    if (route.query.parent_platforms) {
-        // @ts-ignore
-        platformValue.value = route.query.parent_platforms.split(',')
+    const platforms = route.query.parent_platforms
+    if (typeof platforms === 'string') {
+        platformValue.value = platforms.split(',')
     }
 })
 </script>

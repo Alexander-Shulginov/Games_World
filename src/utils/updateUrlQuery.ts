@@ -1,6 +1,6 @@
 import { Router } from 'vue-router'
 
-export const updateUrlQuery = (router: Router, payload: Record<string, any>) => {
+export const updateUrlQuery = (router: Router, payload: Record<string, string | number | null | undefined>) => {
     const newQuery = {
         ...router.currentRoute.value.query,
         ...payload
