@@ -4,8 +4,9 @@ import BaseLink from '@/components/UI/BaseLink.vue'
 import { fetchGames } from '@/services/gamesService'
 import BaseTitle from '@/components/UI/BaseTitle.vue'
 import PopularGamesCarousel from '@/components/PopularGames/PopularGamesCarousel.vue'
+import TheError from '@/components/UI/TheError.vue'
 
-const { isPending, data } = useQuery({
+const { isPending, data, isError, refetch } = useQuery({
     queryKey: ['getGames'],
     queryFn: () => fetchGames({ page_size: 12, page: 1 }),
     staleTime: 1000 * 60 * 5
@@ -20,7 +21,8 @@ const { isPending, data } = useQuery({
             >
             <BaseLink :to="{ name: 'Games' }" :text="'View all'" :size="'compact'" />
         </div>
-        <PopularGamesCarousel :data="data" :is-pending="isPending" />
+        <PopularGamesCarousel v-if="!isError" :data="data" :is-pending="isPending" />
+        <TheError v-else-if="isError" :retry-action="refetch" />
     </section>
 </template>
 

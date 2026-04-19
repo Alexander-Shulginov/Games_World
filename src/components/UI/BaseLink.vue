@@ -9,15 +9,22 @@ defineProps<{
 </script>
 
 <template>
-    <router-link :to="to" :class="`base-link base-link--${size}`">{{ text }}</router-link>
+    <router-link
+        :to="to"
+        :class="`base-link base-link--${size}`"
+        :aria-label="text"
+        tabindex="0"
+        role="link"
+        >{{ text }}</router-link
+    >
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .base-link {
     display: inline-flex;
     align-items: center;
 
-    border-radius: 35px;
+    border-radius: 8px;
 
     text-transform: capitalize;
     line-height: 1.2;
