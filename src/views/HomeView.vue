@@ -29,10 +29,10 @@ useHead({
 
 <template>
     <div aria-label="Home page">
-        <!-- <MainCarousel /> -->
-        <!-- <GenreList /> -->
-        <!-- <PopularGames /> -->
-        <!-- <PopularCategory /> -->
+        <MainCarousel />
+        <GenreList />
+        <PopularGames />
+        <PopularCategory />
         <CatalogGames />
         <ProjectInfo />
         <BaseScrollToTop />
