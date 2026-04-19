@@ -17,7 +17,7 @@ defineProps<{
             <BaseImg :src="game.image" :alt="game.name" :width="300" :height="400" class="cardBase__img" />
         </div>
         <p class="cardBase__name">
-            {{ game.name || 'No name' }}
+            {{ game.name ?? 'No name' }}
         </p>
 
         <div class="cardBase__wrap">
