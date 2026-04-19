@@ -1,58 +1,59 @@
 <script setup lang="ts">
 import BaseTitle from '@/components/UI/BaseTitle.vue'
+import type { Genre } from '@/types/genres'
 
 defineProps<{
-    genreId: number
-    genreName: string
-    genreImg: string
-    genreSlug: string
+    data: Genre
 }>()
 </script>
 
 <template>
-    <router-link :to="{ name: 'Games', query: { genres: genreId } }" class="genreCard">
-        <BaseTitle :tag="'h3'" :is-bold="true" :class="'genreCard__title'">{{
-            genreName
-        }}</BaseTitle>
-        <img class="genreCard__img" width="440" height="260" :src="genreImg" :alt="genreName" loading="lazy" />
+    <router-link :to="{ name: 'Games', query: { genres: data.genreId } }" class="genreList__card"
+        :aria-label="`Games in the ${data.genreName} genre`">
+        <BaseTitle :tag="'h3'" :is-bold="true" :class="'genreList__title'">{{ data.genreName }}</BaseTitle>
+        <img class="genreList__img" width="440" height="260" :src="data.genreImg" :alt="data.genreName" loading="lazy" />
     </router-link>
 </template>
 
 <style lang="scss" scoped>
-.genreCard {
-    display: block;
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
+.genreList {
+    &__card {
+        display: block;
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
 
-    &:focus-visible {
-        .genreCard__img {
-            transform: scale(1.05);
-        }
-    }
-
-    @media (any-hover: hover) {
-        &:hover {
-            .genreCard__img,
-            &::after {
+        &:focus-visible {
+            .genreList__img {
                 transform: scale(1.05);
             }
         }
-    }
 
-    &::after {
-        content: '';
-        pointer-events: none;
+        @media (any-hover: hover) {
+            &:hover {
 
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+                .genreList__img,
+                &::after {
+                    transform: scale(1.05);
+                }
+            }
+        }
 
-        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 50%);
-        width: 100%;
-        transition: transform 0.8s ease-in-out;
+        &::after {
+            content: '';
+            pointer-events: none;
+
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 50%);
+            width: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
+
     }
 
     &__title {

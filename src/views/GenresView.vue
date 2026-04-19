@@ -4,7 +4,7 @@ import BaseTitle from '@/components/UI/BaseTitle.vue'
 import { useQuery } from '@tanstack/vue-query'
 import { fetchGenres } from '@/services/genresService'
 
-const { data, isFetching, isError, error } = useQuery({
+const { data, isPending, isError, refetch } = useQuery({
     queryKey: ['genres', 'list'],
     queryFn: fetchGenres
 })
@@ -16,10 +16,10 @@ const { data, isFetching, isError, error } = useQuery({
         <div class="allGenres">
             <AllGenresList
                 class="allGenres__genre"
-                :data="data"
-                :is-fetching="isFetching"
+                :data="data ?? []"
+                :is-pending="isPending"
                 :is-error="isError"
-                :error-message="error instanceof Error ? error.message : undefined"
+                :retry="refetch"
             />
         </div>
     </section>

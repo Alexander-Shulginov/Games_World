@@ -2,27 +2,25 @@
 import CardGenre from '@/components/Cards/CardGenre.vue'
 import BaseLoader from '@/components/UI/BaseLoader.vue'
 import type { IGenres } from '@/types/interfaces/IGenres'
+import TheError from '../UI/TheError.vue';
 
 defineProps<{
-    isFetching: boolean
-    data: IGenres[] | undefined
+    data: IGenres[]
+    isPending: boolean
     isError: boolean
-    errorMessage?: string
+    retry: () => void
 }>()
 </script>
 
 <template>
     <div class="allGenres__wrapper">
-        <BaseLoader v-if="isFetching" />
-        <ul v-else-if="data?.length" class="genresList">
+        <TheError v-if="isError" :retry-action="retry"/>
+        <BaseLoader v-else-if="isPending" />
+        <ul v-else class="genresList" aria-label="Genres">
             <li v-for="genre in data" :key="genre.id">
                 <CardGenre :data="genre" />
             </li>
         </ul>
-        <div v-else-if="isError" class="error">
-            {{ errorMessage ?? 'Failed to load genres' }}
-        </div>
-        <div v-else class="empty">No genres found</div>
     </div>
 </template>
 
