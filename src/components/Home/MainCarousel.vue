@@ -20,12 +20,12 @@ useSwiper(swiperFullscreen, {
 </script>
 
 <template>
-    <div class="swiper mainCarousel" ref="swiperFullscreen">
-        <div class="swiper-wrapper">
+    <section aria-label="Main carousel" class="swiper mainCarousel" ref="swiperFullscreen">
+        <div class="swiper-wrapper" role="group" aria-label="Main carousel slides">
             <CardFullscreen v-for="(game, index) in mainContent" :key="game.id" :data="game" :is-first-image="index === 0" class="swiper-slide" />
         </div>
-        <div class="swiper-pagination carousel-pagination"></div>
-    </div>
+        <div aria-label="Pagination carousel" class="swiper-pagination carousel-pagination"></div>
+    </section>
 </template>
 
 <style lang="scss" scoped>

@@ -10,10 +10,11 @@ const toggleContent = () => {
 </script>
 
 <template>
-    <section class="project-info">
+    <section aria-label="Project information" class="project-info">
         <div
             class="project-info__content"
             :class="isCompact ? 'project-info__content--compact' : false"
+            :aria-expanded="isCompact"
         >
             <BaseTitle :tag="'h3'">
                 Discover the World of Games: New Releases, Hits, and Exclusives

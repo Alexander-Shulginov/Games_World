@@ -28,13 +28,13 @@ useHead({
 </script>
 
 <template>
-    <section aria-label="Home page">
-        <MainCarousel />
-        <GenreList />
-        <PopularGames />
-        <PopularCategory />
+    <div aria-label="Home page">
+        <!-- <MainCarousel /> -->
+        <!-- <GenreList /> -->
+        <!-- <PopularGames /> -->
+        <!-- <PopularCategory /> -->
         <CatalogGames />
         <ProjectInfo />
         <BaseScrollToTop />
-    </section>
+    </div>
 </template>

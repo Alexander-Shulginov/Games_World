@@ -14,7 +14,7 @@ import { GameByIdResponseDTO } from '@/types/DTO/GameByIdDTO'
 
 const ENDPOINT = '/games'
 
-export const fetchGames = async (params?: {}): Promise<IListGames> => {
+export const fetchGames = async (params?: Record<string, unknown>): Promise<IListGames> => {
     const response = await api.get<GamesResponseDTO>(ENDPOINT, { params })
     return GamesModel(response.data)
 }
