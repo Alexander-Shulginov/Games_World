@@ -1,34 +1,46 @@
 <script setup lang="ts">
 import CardRating from '@/components/Cards/CardRating.vue'
 import BaseLoader from '@/components/UI/BaseLoader.vue'
-import { IGame } from '@/types/interfaces/IGames'
+import TheError from '@/components/UI/TheError.vue'
+import type { IGame } from '@/types/interfaces/IGames'
 
-defineProps<{
-    games: IGame[] | undefined
-    loading: boolean
-}>()
+interface Props {
+    games: IGame[]
+    isLoading: boolean
+    isError: boolean
+}
+
+withDefaults(defineProps<Props>(), {
+    games: () => [],
+})
 </script>
 
 <template>
-    <div class="catalogGamesList">
-        <BaseLoader v-if="loading" />
-        <CardRating v-for="game in games" :key="game.id" :game="game" class="catalogGamesList__item" />
-    </div>
+    <TheError v-if="isError" />
+    <BaseLoader v-else-if="isLoading" />
+    <ul v-else class="catalogGames__list" aria-label="Games list">
+        <li class="catalogGames__item" v-for="game in games" :key="game.id">
+            <CardRating :game="game" />
+        </li>
+    </ul>
 </template>
 
 <style lang="scss" scoped>
-.catalogGamesList {
+.catalogGames {
     position: relative;
 
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    padding: 16px;
-    background-color: var(--color-dark-second);
+    &__list {
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 16px;
+        background-color: var(--color-dark-second);
+    }
 
     &__item {
         transition: color .2s ease-in-out;
+        position: relative;
 
         @media (any-hover:hover) {
             &:hover {
@@ -36,5 +48,6 @@ defineProps<{
             }
         }
     }
+
 }
 </style>

@@ -2,22 +2,21 @@
 import CatalogGamesList from '@/components/CatalogGames/CatalogGamesList.vue'
 import BaseTitle from '@/components/UI/BaseTitle.vue'
 import { fetchGames } from '@/services/gamesService'
+import { getCurrentYearRange } from '@/utils/formatDate';
 import { useQuery } from '@tanstack/vue-query'
 
-const date = new Date();
-
-const { data: releasedGames, isFetching: releasedGamesFetching } = useQuery({
+const { data: releasedGames, isPending: releasedGamesLoading, isError: releasedGamesError } = useQuery({
     queryKey: ['released'],
     queryFn: () =>
         fetchGames({
             page_size: 5,
             ordering: '-rating',
             platforms: '4',
-            dates: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-01,${date.getFullYear()}-12-31`
+            dates: getCurrentYearRange()
         })
 })
 
-const { data: oldGames, isFetching: oldGamesFetching } = useQuery({
+const { data: oldGames, isPending: oldGamesLoading, isError: oldGamesError } = useQuery({
     queryKey: ['old'],
     queryFn: () =>
         fetchGames({
@@ -27,7 +26,7 @@ const { data: oldGames, isFetching: oldGamesFetching } = useQuery({
         })
 })
 
-const { data: playstationGames, isFetching: playStationFetching } = useQuery({
+const { data: playstationGames, isPending: playStationLoading, isError: playStationError } = useQuery({
     queryKey: ['playstation'],
     queryFn: () =>
         fetchGames({
@@ -38,7 +37,7 @@ const { data: playstationGames, isFetching: playStationFetching } = useQuery({
         })
 })
 
-const { data: xboxGames, isFetching: xboxGamesFetching } = useQuery({
+const { data: xboxGames, isPending: xboxGamesLoading, isError: xboxGamesError } = useQuery({
     queryKey: ['xbox'],
     queryFn: () =>
         fetchGames({
@@ -51,27 +50,29 @@ const { data: xboxGames, isFetching: xboxGamesFetching } = useQuery({
 </script>
 
 <template>
-    <div class="catalogGames">
-        <div class="catalogGames__item">
+    <section class="catalogGames" aria-label="Catalog of games">
+        <div class="catalogGames__column">
             <BaseTitle :tag="'h2'" class="catalogGames__title">New Releases</BaseTitle>
-            <CatalogGamesList :games="releasedGames?.results" :loading="releasedGamesFetching" />
+            <CatalogGamesList :games="releasedGames?.results ?? []" :is-loading="releasedGamesLoading"
+                :is-error="releasedGamesError" />
         </div>
 
-        <div class="catalogGames__item">
+        <div class="catalogGames__column">
             <BaseTitle :tag="'h2'" class="catalogGames__title">PlayStation</BaseTitle>
-            <CatalogGamesList :games="playstationGames?.results" :loading="playStationFetching" />
+            <CatalogGamesList :games="playstationGames?.results ?? []" :is-loading="playStationLoading"
+                :is-error="playStationError" />
         </div>
 
-        <div class="catalogGames__item">
+        <div class="catalogGames__column">
             <BaseTitle :tag="'h2'" class="catalogGames__title">Xbox</BaseTitle>
-            <CatalogGamesList :games="xboxGames?.results" :loading="xboxGamesFetching" />
+            <CatalogGamesList :games="xboxGames?.results ?? []" :is-loading="xboxGamesLoading" :is-error="xboxGamesError" />
         </div>
 
-        <div class="catalogGames__item">
+        <div class="catalogGames__column">
             <BaseTitle :tag="'h2'" class="catalogGames__title">Old school</BaseTitle>
-            <CatalogGamesList :games="oldGames?.results" :loading="oldGamesFetching" />
+            <CatalogGamesList :games="oldGames?.results ?? []" :is-loading="oldGamesLoading" :is-error="oldGamesError" />
         </div>
-    </div>
+    </section>
 </template>
 
 <style lang="scss" scoped>
@@ -87,9 +88,21 @@ const { data: xboxGames, isFetching: xboxGamesFetching } = useQuery({
         font-size: 18px;
     }
 
-    &__item {
-        height: 100%;
+    &__column {
         overflow: hidden;
+        position: relative;
+        min-height: 516px;
+
+        @media (max-width: 768px) {
+            min-height: 506px;
+        }
+    }
+
+    .error {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     @media (max-width: 1024px) {

@@ -30,6 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
     color: var(--color-light);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 12px;
 }

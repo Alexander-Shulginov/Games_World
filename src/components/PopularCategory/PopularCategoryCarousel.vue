@@ -2,13 +2,11 @@
 import { nextTick, ref, watch } from 'vue'
 import { Navigation } from 'swiper/modules'
 import { IListGames } from '@/types/interfaces/IGames'
-import CardPopular from '@/components/Cards/CardPopular.vue'
 import { useSwiper } from '@/composables/useSwiper'
-import BaseLoader from '@/components/UI/BaseLoader.vue'
+import CardPopular from '@/components/Cards/CardPopular.vue'
 
 const props = defineProps<{
-    data: IListGames | undefined
-    isLoading: boolean
+    data: IListGames
 }>()
 
 const swiperCategory = ref<HTMLElement | null>(null)
@@ -30,33 +28,31 @@ const { initSwiper, swiperInstance, destroySwiper } = useSwiper(swiperCategory, 
     }
 })
 
-watch([() => props.data, swiperCategory], async (newData) => {
-    if (newData && swiperCategory.value) {
+watch([() => props.data, swiperCategory], async ([data, el]) => {
+    if (data && el) {
         await nextTick()
-        if (swiperInstance) {
-            destroySwiper()
-        }
+        if (swiperInstance) destroySwiper()
         initSwiper()
     }
 })
 </script>
 
 <template>
-    <div class="popularCarousel">
-        <BaseLoader v-if="isLoading" />
-        <div class="swiper popularCarousel__swiper" ref="swiperCategory" v-if="data">
-            <div class="swiper-wrapper">
+    <div class="popularCategory__carousel">
+        <div class="swiper popularCategory__carousel-swiper" ref="swiperCategory">
+            <div class="swiper-wrapper" role="group" aria-label="Popular category slides">
                 <CardPopular class="swiper-slide" v-for="game in data.results" :key="game.id" :data="game" />
             </div>
         </div>
-        <div class="swiper-button-next btn-popular"></div>
-        <div class="swiper-button-prev btn-popular"></div>
+        <div class="swiper-button-next btn-popular" aria-label="Next slide"></div>
+        <div class="swiper-button-prev btn-popular" aria-label="Previous slide"></div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.popularCarousel {
+.popularCategory__carousel {
     width: 100%;
+    height: 100%;
     flex-grow: 2;
     overflow: hidden;
     position: relative;
@@ -65,7 +61,7 @@ watch([() => props.data, swiperCategory], async (newData) => {
         min-height: 160px;
     }
 
-    &__swiper {
+    &-swiper {
         padding: 4px;
     }
 }
