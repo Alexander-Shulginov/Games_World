@@ -4,16 +4,14 @@ import { Navigation } from 'swiper/modules'
 import { useSwiper } from '@/composables/useSwiper'
 import { IListGames } from '@/types/interfaces/IGames'
 import CardGame from '@/components/Cards/CardGame.vue'
-import BaseLoader from '@/components/UI/BaseLoader.vue'
 
 const props = defineProps<{
-    data: IListGames | undefined
-    isPending: boolean
+    data: IListGames
 }>()
 
 const swiperPopular = ref<HTMLElement | null>(null)
 
-const { initSwiper, swiperInstance } = useSwiper(swiperPopular, {
+const { initSwiper } = useSwiper(swiperPopular, {
     modules: [Navigation],
     loop: true,
     speed: 800,
@@ -31,17 +29,17 @@ const { initSwiper, swiperInstance } = useSwiper(swiperPopular, {
     }
 })
 
-watch([() => props.data, swiperPopular], (newData) => {
-    if (newData && swiperPopular.value) {
+watch(
+    () => props.data,
+    () => {
         nextTick(() => initSwiper())
     }
-})
+)
 </script>
 
 <template>
     <div class="popularGames__carousel">
-        <BaseLoader v-if="isPending" />
-        <div v-if="data" class="swiper" ref="swiperPopular">
+        <div class="swiper" ref="swiperPopular">
             <ul class="popularGames__list swiper-wrapper">
                 <li v-for="game in data.results" :key="game.id" class="swiper-slide">
                     <CardGame :game="game" :to="{ name: 'Game', params: { id: game.id } }" />
