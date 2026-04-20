@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-    <router-link :to="{ name: 'Games', query: { genres: data.id } }" class="cardGenres">
+    <router-link :to="{ name: 'Games', query: { genres: data.id } }" class="cardGenres" :title="data.name">
         <BaseImg
             class="cardGenres__img"
             :src="data.img"

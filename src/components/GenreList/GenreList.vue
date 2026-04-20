@@ -29,25 +29,23 @@ useSwiper(swiperGenre, {
             slidesPerView: 5
         }
     },
-    pagination: { el: '.swiper-pagination.genre-pagination' }
+    pagination: { el: '.swiper-pagination.genreList-pagination' }
 })
 </script>
 
 <template>
-    <section class="genre">
-        <div class="swiper genre__swiper" ref="swiperGenre">
+    <section class="genreList" aria-label="Genre list">
+        <div class="swiper genreList__swiper" ref="swiperGenre">
             <div class="swiper-wrapper">
-                <GenreListCard v-for="genre in genreList" :key="genre.genreName" :genre-id="genre.genreId"
-                    :genre-name="genre.genreName" :genre-img="genre.genreImg" :genre-slug="genre.genreSlug"
-                    class="swiper-slide" />
+                <GenreListCard v-for="genre in genreList" :key="genre.genreId" :data="genre" class="swiper-slide" />
             </div>
         </div>
-        <div class="swiper-pagination genre-pagination"></div>
+        <div class="swiper-pagination genreList-pagination"></div>
     </section>
 </template>
 
 <style lang="scss" scoped>
-.genre {
+.genreList {
     position: relative;
     margin-bottom: 56px;
 
