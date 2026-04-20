@@ -11,34 +11,31 @@ const { data, isPending, isError, refetch } = useQuery({
 </script>
 
 <template>
-    <section aria-label="All genres page">
-        <BaseTitle :tag="'h1'" class="allGenres-title">All Genres</BaseTitle>
-        <div class="allGenres">
-            <AllGenresList
-                class="allGenres__genre"
-                :data="data ?? []"
-                :is-pending="isPending"
-                :is-error="isError"
-                :retry="refetch"
-            />
-        </div>
+    <section class="allGenres" aria-label="All genres page">
+        <BaseTitle :tag="'h1'" class="allGenres__title">Explore All Genres</BaseTitle>
+        <p class="allGenres__text">Dive into a universe of games across every genre. <br/> Find your next adventure today!</p>
+        <AllGenresList
+            :data="data ?? []"
+            :is-pending="isPending"
+            :is-error="isError"
+            :retry="refetch"
+        />
     </section>
 </template>
 
 <style lang="scss" scoped>
 .allGenres {
-    position: relative;
-    min-height: 600px;
+    &__title {
+        margin-bottom: 12px;
+    }
 
-    &-title {
+    &__text {
+        opacity: 0.8;
         margin-bottom: 36px;
+
         @media (max-width: 768px) {
             margin-bottom: 26px;
         }
-    }
-
-    &__genre {
-        padding-bottom: 80px;
     }
 }
 </style>

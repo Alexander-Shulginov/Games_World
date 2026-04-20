@@ -16,7 +16,7 @@ defineProps<{
     <div class="allGenres__wrapper">
         <TheError v-if="isError" :retry-action="retry"/>
         <BaseLoader v-else-if="isPending" />
-        <ul v-else class="genresList" aria-label="Genres">
+        <ul v-else class="allGenres__list" aria-label="Genres">
             <li v-for="genre in data" :key="genre.id">
                 <CardGenre :data="genre" />
             </li>
@@ -25,18 +25,36 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-.genresList {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+.allGenres {
+    &__wrapper {
+        position: relative;
+        min-height: 600px;
+        padding-bottom: 80px;
 
-    @media (max-width: 1024px) {
-        grid-template-columns: repeat(3, 1fr);
+        @media (max-width: 1024px) {
+            padding-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            padding-bottom: 40px;
+        }
+
     }
 
-    @media (max-width: 768px) {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+
+        @media (max-width: 1024px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
     }
 }
+
 </style>
