@@ -1,22 +1,14 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { fetchGames } from '@/services/gamesService'
 import { updateUrlQuery } from '@/utils/updateUrlQuery'
-import { useQuery } from '@tanstack/vue-query'
 import SvgIcon from '@/components/UI/SvgIcon.vue'
 
 const route = useRoute()
 const router = useRouter()
 
-const searchQuery = ref(route.query.search || '')
+const searchQuery = ref<string>((route.query.search as string) || '')
 let timeout: ReturnType<typeof setTimeout> | undefined
-
-useQuery({
-    queryKey: ['searchGames', route.query],
-    queryFn: () => fetchGames({ page_size: 20, page: 1, ...route.query }),
-    staleTime: 1000 * 60 * 5
-})
 
 const clearInput = () => {
     searchQuery.value = ''
@@ -27,19 +19,22 @@ watch(
     (newValue) => {
         clearTimeout(timeout)
         timeout = setTimeout(() => {
-            updateUrlQuery(router, { search: newValue, page:1 })
+            updateUrlQuery(router, { search: newValue, page: 1 })
         }, 500)
     }
 )
 
 watch(
-    () => route.query.search,
-    () => {
-        if (!route.query.search) {
-            searchQuery.value = ''
+    () => route.query.search as string | undefined,
+    (newValue) => {
+        const normalized = newValue || ''
+        if (searchQuery.value !== normalized) {
+            searchQuery.value = normalized
         }
     }
 )
+
+onUnmounted(() => clearTimeout(timeout))
 </script>
 
 <template>

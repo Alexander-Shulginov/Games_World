@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 import { useQuery } from '@tanstack/vue-query'
 import { fetchGames } from '@/services/gamesService'
@@ -16,10 +16,9 @@ const selectedRadio = ref('')
 
 const {
     data: games,
-    refetch,
     isFetching
 } = useQuery({
-    queryKey: ['getGames', route.query],
+    queryKey: computed(() => ['getGames', route.query]),
     queryFn: () => fetchGames({ page_size: 20, page: 1, ...route.query }),
     staleTime: 1000 * 60 * 5
 })
@@ -39,7 +38,7 @@ const {
             <ListGamesContent :is-fetching="isFetching" :games="games" :layout="selectedRadio" />
         </div>
 
-        <ListGamesNavigation :games="games" :is-fetching="isFetching" :refetch="refetch" />
+        <ListGamesNavigation :games="games" :is-fetching="isFetching" />
     </div>
     </section>
 </template>
