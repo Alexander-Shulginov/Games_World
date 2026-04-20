@@ -1,25 +1,21 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { IListGames } from '@/types/interfaces/IGames'
 import { removeUrlQuery, updateUrlQuery } from '@/utils/updateUrlQuery'
 import SvgIcon from '@/components/UI/SvgIcon.vue'
 
+const PAGE_SIZE = 20;
+
 const props = defineProps<{
     isFetching: boolean
     games: IListGames | undefined
-    refetch: Function
 }>()
 
 const route = useRoute()
 const router = useRouter()
 
 const page = computed(() => Number(route.query.page) || 1)
-
-watch(
-    () => route.query,
-    () => props.refetch()
-)
 
 const increasePage = () => {
     if (props.games?.next) {
@@ -30,23 +26,22 @@ const increasePage = () => {
 }
 
 const decreasePage = () => {
-    if (props.games?.prev) {
-        updateUrlQuery(router, {
-            page: page.value - 1
-        })
-    }
+    if (!props.games?.prev) return
     if (page.value === 2) {
         removeUrlQuery(router, 'page')
+    } else {
+        updateUrlQuery(router, { page: page.value - 1 })
     }
 }
 </script>
 
 <template>
-    <div v-if="games && games?.count > 20 && !isFetching" class="gamesNav">
+    <div v-if="games && games?.count > PAGE_SIZE && !isFetching" class="gamesNav">
         <button
-            :disabled="games?.prev === null"
+            :disabled="games.prev === null"
             @click="decreasePage"
             class="gamesNav__btn"
+            aria-label="previous page"
             type="button"
         >
             <SvgIcon name="common-pixel-arrow" :size="22" class="gamesNav__arrow gamesNav__arrow--left" />
@@ -54,8 +49,9 @@ const decreasePage = () => {
             <SvgIcon name="common-pixel-arrow" :size="22" class="gamesNav__arrow gamesNav__arrow--left" />
         </button>
         <button
-            :disabled="games?.next === null"
+            :disabled="games.next === null"
             @click="increasePage"
+            aria-label="next page"
             class="gamesNav__btn"
             type="button"
         >

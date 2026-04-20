@@ -9,8 +9,6 @@ defineProps<{
         percent: number
     }[]
 }>()
-
-
 </script>
 
 <template>
