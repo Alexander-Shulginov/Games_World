@@ -9,47 +9,45 @@ const router = useRouter()
 const currentYear = new Date().getFullYear()
 const minYearToFilter = 1970
 
-let sendRequest = ref(false)
-let isError = ref(false)
+const isMinError = ref(false)
+const isMaxError = ref(false)
+const minYear = ref(minYearToFilter)
+const maxYear = ref(currentYear)
 
-let minYear = ref(minYearToFilter)
-let maxYear = ref(currentYear)
+const isValidYear = (value: string) => {
+    const num = Number(value)
+    return value.length >= 4 && num >= minYearToFilter && num <= currentYear
+}
 
-const validateInputValue = (e: Event) => {
+const validateInput = (e: Event, isMin: boolean) => {
     const target = e.target as HTMLInputElement
     target.value = target.value.replace(/\D/g, '')
-
-    if (Number(target.value) < minYearToFilter || Number(target.value) > currentYear) {
-        isError.value = true
-    } else {
-        isError.value = false
-        sendRequest.value = true
+    const valid = isValidYear(target.value)
+    if (isMin) isMinError.value = !valid
+    else isMaxError.value = !valid
+    if (!isMinError.value && !isMaxError.value) {
+        updateUrlQuery(router, {
+            dates: `${minYear.value}-01-01,${maxYear.value}-12-31`,
+            page: 1
+        })
     }
 }
 
-const handleBlurMinValue = (e: Event) => {
+const handleBlurMin = (e: Event) => {
     const target = e.target as HTMLInputElement
-    if (
-        Number(target.value.length) < 4 ||
-        Number(target.value) < minYearToFilter ||
-        Number(target.value) > currentYear
-    ) {
+    if (!isValidYear(target.value)) {
         minYear.value = minYearToFilter
         target.value = String(minYearToFilter)
-        isError.value = false
+        isMinError.value = false
     }
 }
 
-const handleBlurMaxValue = (e: Event) => {
+const handleBlurMax = (e: Event) => {
     const target = e.target as HTMLInputElement
-    if (
-        Number(target.value.length) < 4 ||
-        Number(target.value) < minYearToFilter ||
-        Number(target.value) > currentYear
-    ) {
+    if (!isValidYear(target.value)) {
         maxYear.value = currentYear
         target.value = String(currentYear)
-        isError.value = false
+        isMaxError.value = false
     }
 }
 
@@ -59,19 +57,6 @@ watch(
         if (route.query.dates === undefined) {
             minYear.value = minYearToFilter
             maxYear.value = currentYear
-        }
-    }
-)
-
-watch(
-    () => sendRequest.value,
-    (newValue) => {
-        if (newValue) {
-            updateUrlQuery(router, {
-                dates: `${minYear.value}-01-01,${maxYear.value}-12-31`,
-                page: 1
-            })
-            sendRequest.value = false
         }
     }
 )
@@ -91,33 +76,33 @@ onMounted(() => {
     <div class="yearFilter">
         <div class="yearFilter__wrap">
             <input
-                @input="validateInputValue"
-                @blur="handleBlurMinValue"
+                @input="validateInput($event, true)"
+                @blur="handleBlurMin"
                 class="yearFilter__num"
                 v-model="minYear"
                 type="text"
                 :placeholder="String(minYearToFilter)"
                 maxlength="4"
-                name="1"
-                id="1"
+                name="minYear"
+                id="minYear"
             />
-            <span class="yearFilter__tip" :class="{ 'yearFilter__tip--active': isError }"
+            <span class="yearFilter__tip" :class="{ 'yearFilter__tip--active': isMinError }"
                 >Min {{ minYearToFilter }}</span
             >
         </div>
         <div class="yearFilter__wrap">
             <input
-                @input="validateInputValue"
-                @blur="handleBlurMaxValue"
+                @input="validateInput($event, false)"
+                @blur="handleBlurMax"
                 v-model="maxYear"
                 class="yearFilter__num"
                 :placeholder="String(currentYear)"
                 maxlength="4"
                 type="text"
-                name="2"
-                id="2"
+                name="maxYear"
+                id="maxYear"
             />
-            <span class="yearFilter__tip" :class="{ 'yearFilter__tip--active': isError }"
+            <span class="yearFilter__tip" :class="{ 'yearFilter__tip--active': isMaxError }"
                 >Max {{ currentYear }}</span
             >
         </div>

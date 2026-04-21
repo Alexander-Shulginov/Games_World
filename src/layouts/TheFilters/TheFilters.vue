@@ -11,7 +11,7 @@ const { toggleOverlay } = useOverlay()
 </script>
 
 <template>
-    <aside class="filters" :class="{ 'filters--active': filtersState.isOpen === false }">
+    <aside class="filters" :class="{ 'filters--active': filtersState.isOpen }">
         <TheFiltersToggler @click="toggleFilters(), toggleOverlay()" class="filters__close-btn" />
         <div class="filters__content">
             <div class="filters__block">
@@ -86,6 +86,11 @@ const { toggleOverlay } = useOverlay()
         overflow-y: scroll;
         padding: 4px;
         position: relative;
+        margin-bottom: 12px;
+        --scrollbar-color-thumb: var(--color-accent);
+        --scrollbar-color-track: var(--color-dark-base);
+        --scrollbar-width: thin;
+        --scrollbar-width-legacy: 5px;
     }
 
     &__items--expanded {
@@ -105,14 +110,6 @@ const { toggleOverlay } = useOverlay()
         font-weight: 700;
         margin-bottom: 10px;
         display: block;
-    }
-
-    &__items {
-        margin-bottom: 12px;
-        --scrollbar-color-thumb: var(--color-accent);
-        --scrollbar-color-track: var(--color-dark-base);
-        --scrollbar-width: thin;
-        --scrollbar-width-legacy: 5px;
     }
 
     &__toggle {

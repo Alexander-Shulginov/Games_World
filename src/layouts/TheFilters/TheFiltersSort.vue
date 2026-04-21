@@ -72,7 +72,7 @@ onMounted(() => {
     background-color: var(--color-dark-second);
     border: 1px solid var(--color-light);
     border-radius: 5px;
-    color: #ffffff;
+    color: var(--color-light);
     cursor: pointer;
 }
 
@@ -85,7 +85,7 @@ onMounted(() => {
     transform: translate(0, -50%);
     width: 12px;
     height: 12px;
-    background-color: #ffffff;
+    background-color: var(--color-light);
     clip-path: polygon(8% 17%, 0% 25%, 50% 84%, 100% 25%, 92% 17%, 50% 65%);
 }
 </style>
