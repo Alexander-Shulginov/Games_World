@@ -1,23 +1,19 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/UI/SvgIcon.vue';
+import { IGameById } from '@/types/interfaces/IGameById';
 
 defineProps<{
-    user_rating: {
-        id: number
-        title: string
-        count: number
-        percent: number
-    }[]
+    userRating: IGameById['ratings']
 }>()
 </script>
 
 <template>
-    <div v-if="user_rating.length" class="userRating">
+    <div v-if="userRating" class="userRating">
         <div class="userRating__block">
-            <div v-for="rating in user_rating" :key="rating.id" class="userRating__item">
+            <div v-for="rating in userRating" :key="rating.id" class="userRating__item">
                 <div class="userRating__circle" :style="`--percent: ${rating.percent}%`">
                     <SvgIcon class="userRating__icon" :size="20"
-                        :name="`user-rating-${rating.title.toLocaleLowerCase()}`" />
+                        :name="`user-rating-${rating.title.toLowerCase()}`" />
                 </div>
                 <div class="userRating__wrap">
                     <div class="userRating__title">{{ rating.title }}</div>
@@ -59,12 +55,6 @@ defineProps<{
             grid-template-columns: 1fr;
             row-gap: 20px;
         }
-    }
-
-    &__value {
-        height: 10px;
-        width: var(--item-width);
-        border-radius: 8px;
     }
 
     &__title {

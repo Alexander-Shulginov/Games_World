@@ -19,27 +19,28 @@ import GameInfoUserRating from '@/components/GameInfo/GameInfoUserRating.vue'
 import EsrbRating from '@/components/Common/EsrbRating.vue'
 import GameInfoDescription from '@/components/GameInfo/GameInfoDescription.vue'
 import BaseLoader from '@/components/UI/BaseLoader.vue'
+import TheError from '@/components/UI/TheError.vue'
 
 const route = useRoute()
 const gameId = computed(() => Number(route.params.id))
 
-const { data: game, isLoading } = useQuery({
-    queryKey: ['getGameById', gameId.value],
+const { data: game, isLoading, isError } = useQuery({
+    queryKey: ['getGameById', gameId],
     queryFn: () => fetchGameById(gameId.value)
 })
 
 const { data: screens } = useQuery({
-    queryKey: ['getScreenShots', gameId.value],
+    queryKey: ['getScreenShots', gameId],
     queryFn: () => fetchScreenShootsById(gameId.value)
 })
 
 const { data: series } = useQuery({
-    queryKey: ['getGameSeries', gameId.value],
+    queryKey: ['getGameSeries', gameId],
     queryFn: () => fetchGameSeries(gameId.value)
 })
 
 const { data: dlc } = useQuery({
-    queryKey: ['getGameDLC', gameId.value],
+    queryKey: ['getGameDLC', gameId],
     queryFn: () => fetchGameDLC(gameId.value)
 })
 
@@ -50,7 +51,8 @@ watchEffect(() => {
 
 <template>
     <section aria-label="Game page">
-        <BaseLoader v-if="isLoading" />
+        <TheError v-if="isError"/>
+        <BaseLoader v-else-if="isLoading" />
         <div class="gameInfo" v-else-if="game">
             <div class="gameInfo__wrap">
                 <div class="gameInfo__picture">
@@ -67,9 +69,9 @@ watchEffect(() => {
                 </div>
             </div>
 
-            <GameInfoUserRating :user_rating="game.ratings" class="gameInfo__user-rating" />
+            <GameInfoUserRating :userRating="game.ratings" class="gameInfo__user-rating" />
 
-            <GameInfoGallery :data="game" :screens="screens" />
+            <GameInfoGallery :data="game" :screens="screens ?? []" />
 
             <GameInfoDescription>
                 {{ game.descr }}
@@ -81,7 +83,6 @@ watchEffect(() => {
 
             <GameInfoSeries :data="dlc" :title="'DLC'" />
         </div>
-        <div v-else="isError">ERROR</div>
     </section>
 </template>
 

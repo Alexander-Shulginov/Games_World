@@ -1,10 +1,8 @@
 <script setup lang="ts">
+import { IGameById } from '@/types/interfaces/IGameById';
+
 defineProps<{
-    tags: {
-        id: number
-        slug: string
-        name: string
-    }[]
+    tags: IGameById['tags']
 }>()
 </script>
 
@@ -30,7 +28,6 @@ defineProps<{
 
     &__item {
         font-size: 13px;
-        cursor: pointer;
         padding: 6px 12px;
         border-radius: 10px;
         background-color: var(--color-dark-second);
