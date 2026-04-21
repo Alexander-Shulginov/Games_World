@@ -1,48 +1,15 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { updateUrlQuery } from '@/utils/updateUrlQuery'
-import BaseCheckbox from '@/components/UI/BaseCheckbox.vue'
 import { useQuery } from '@tanstack/vue-query'
 import { fetchPlatforms } from '@/services/platformsService'
+import BaseCheckbox from '@/components/UI/BaseCheckbox.vue'
 import BaseLoader from '@/components/UI/BaseLoader.vue'
+import { useUrlCheckboxFilter } from '@/composables/useUrlCheckboxFilter'
 
-const route = useRoute()
-const router = useRouter()
-const platformValue = ref<string[]>([])
-const isExpand = ref(false)
+const { selectedValues: platformValue, isExpand } = useUrlCheckboxFilter('parent_platforms')
 
 const { data: platforms, isLoading } = useQuery({
     queryKey: ['getPlatforms'],
     queryFn: () => fetchPlatforms()
-})
-
-watch(
-    () => platformValue.value,
-    (n) => {
-        updateUrlQuery(router, {
-            parent_platforms: n.join(','),
-            page: 1
-        })
-    }
-)
-
-watch(
-    () => route.query.parent_platforms,
-    (newValue) => {
-        if (!newValue) {
-            platformValue.value = []
-        } else if (typeof newValue === 'string') {
-            platformValue.value = newValue.split(',')
-        }
-    }
-)
-
-onMounted(() => {
-    const platforms = route.query.parent_platforms
-    if (typeof platforms === 'string') {
-        platformValue.value = platforms.split(',')
-    }
 })
 </script>
 

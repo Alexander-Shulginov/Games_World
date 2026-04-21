@@ -1,45 +1,15 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { updateUrlQuery } from '@/utils/updateUrlQuery'
-import BaseCheckbox from '@/components/UI/BaseCheckbox.vue'
 import { useQuery } from '@tanstack/vue-query'
 import { fetchGenres } from '@/services/genresService'
+import BaseCheckbox from '@/components/UI/BaseCheckbox.vue'
 import BaseLoader from '@/components/UI/BaseLoader.vue'
+import { useUrlCheckboxFilter } from '@/composables/useUrlCheckboxFilter'
 
-const route = useRoute()
-const router = useRouter()
-const genresValue = ref<string[]>([])
-const isExpand = ref(false)
+const { selectedValues: genresValue, isExpand } = useUrlCheckboxFilter('genres')
 
 const { data: genres, isLoading } = useQuery({
     queryKey: ['getGenres'],
     queryFn: () => fetchGenres()
-})
-
-watch(
-    () => genresValue.value,
-    (n) => {
-        updateUrlQuery(router, {
-            genres: n.join(','),
-            page: 1
-        })
-    }
-)
-
-watch(
-    () => route.query.genres,
-    (newValue) => {
-        if (!newValue) {
-            genresValue.value = []
-        }
-    }
-)
-onMounted(() => {
-    const genres = route.query.genres
-    if (typeof genres === 'string') {
-        genresValue.value = genres.split(',')
-    }
 })
 </script>
 
