@@ -1,8 +1,6 @@
 <template>
     <div class="game-description">
-        <p>
-            <slot></slot>
-        </p>
+        <slot></slot>
     </div>
 </template>
 

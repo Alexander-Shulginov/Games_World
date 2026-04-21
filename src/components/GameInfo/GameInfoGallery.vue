@@ -9,13 +9,13 @@ import { IListGamesScreens } from '@/types/interfaces/IGameScreens'
 
 defineProps<{
     data: IGameById | undefined
-    screens: IListGamesScreens[]
+    screens: IListGamesScreens[] | undefined
 }>()
 
-const swiperSimilar = ref<HTMLElement | null>(null)
+const gallerySwiper = ref<HTMLElement | null>(null)
 const fancyboxSelector = '[data-fancybox]'
 
-const { initSwiper, destroySwiper } = useSwiper(swiperSimilar, {
+const { initSwiper, destroySwiper } = useSwiper(gallerySwiper, {
     modules: [Pagination],
     loop: false,
     spaceBetween: 16,
@@ -67,11 +67,11 @@ onUnmounted(() => {
 
 <template>
     <div class="gameInfo__gallery">
-        <div class="swiper" ref="swiperSimilar">
+        <div class="swiper" ref="gallerySwiper">
             <div class="swiper-wrapper">
-                <a v-for="screen, index in screens" data-fancybox="gallery" :key="index" :href="screen.img" class="swiper-slide"
+                <a v-for="screen in screens" data-fancybox="gallery" :key="screen.id" :href="screen.img" class="swiper-slide"
                     tabindex="-1">
-                    <img class="gameInfo__gallery-img" :key="screen.id" :width="screen.width" :height="screen.height"
+                    <img class="gameInfo__gallery-img" :width="screen.width" :height="screen.height"
                         :src="screen.img" :alt="data?.name" />
                 </a>
             </div>

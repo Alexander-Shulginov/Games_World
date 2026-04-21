@@ -22,11 +22,7 @@ defineProps<{
             <div class="gameDetails__values">
                 <router-link
                     :to="{ name: 'Games', query: { genres: genre.id } }"
-                    v-for="genre in info.genres"
-                    class="gameDetails__value"
-                >
-                    {{ genre.name }}
-                </router-link>
+                    v-for="genre in info.genres" :key="genre.id" class="gameDetails__value" >{{ genre.name }}</router-link>
             </div>
         </div>
 
@@ -38,14 +34,8 @@ defineProps<{
         </div>
 
         <div v-if="info.website" class="gameDetails__item">
-            <span class="gameDetails__key"> Website</span>
-            <a
-                :href="info.website"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="gameDetails__value gameDetails__value--link"
-                >{{ info.name }}</a
-            >
+            <span class="gameDetails__key">Website</span>
+            <a :href="info.website" target="_blank" rel="noopener noreferrer" class="gameDetails__value gameDetails__value--link" >{{ info.name }}</a>
         </div>
 
         <div v-if="info.developers.length" class="gameDetails__item">
@@ -58,7 +48,7 @@ defineProps<{
                             developers: developer.id
                         }
                     }"
-                    v-for="developer in info.developers"
+                    v-for="developer in info.developers" :key="developer.id"
                     class="gameDetails__value"
                 >
                     {{ developer.name }}
@@ -76,20 +66,20 @@ defineProps<{
                             publishers: publisher.id
                         }
                     }"
-                    v-for="publisher in info.publishers"
+                    v-for="publisher in info.publishers" :key="publisher.id"
                     class="gameDetails__value"
                 >
                     {{ publisher.name }}
                 </router-link>
             </div>
         </div>
-        <div v-if="info.platforms" class="gameDetails__item">
+        <div v-if="info.platforms.length" class="gameDetails__item">
             <span class="gameDetails__key">Platforms</span>
             <div class="gameDetails__values">
                 <router-link
                     :to="{ name: 'Games', query: { platforms: platform.id } }"
-                    v-for="(platform, index) in info.platforms"
-                    :key="index"
+                    v-for="(platform) in info.platforms"
+                    :key="platform.id"
                     class="gameDetails__value"
                 >
                     {{ platform.name }}
