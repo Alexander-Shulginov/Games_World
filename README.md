@@ -4,7 +4,6 @@
 
 **Frontend**: TS, Vue, Vue-Router, Tanstack Query
 **Backend**: Public API - [rawg.io](https://rawg.io/apidocs)
-**Data Base**: PostgreSQL
 
 ---
 

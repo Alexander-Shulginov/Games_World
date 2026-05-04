@@ -35,14 +35,14 @@ defineProps<{
         width: 70px;
         height: 70px;
         object-fit: cover;
-
+        flex-shrink: 0;
         border-radius: 4px;
     }
 
     &__wrap {
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: center;
     }
 
     &__name {
