@@ -1,6 +1,5 @@
-/// <reference types="vitest" />
 import { fileURLToPath, URL } from 'node:url'
-import { defineConfig } from 'vitest/config'
+import { defineConfig } from 'vite'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import vue from '@vitejs/plugin-vue'
@@ -19,9 +18,7 @@ export default defineConfig({
             '@': fileURLToPath(new URL('./src/', import.meta.url))
         }
     },
-    test: {
-        environment: 'jsdom',
-    },
+
     build: {
         rollupOptions: {
             plugins: [

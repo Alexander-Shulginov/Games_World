@@ -9,7 +9,7 @@ interface Props {
     retryAction?: () => void;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
     title: ERROR_CONFIG.title,
     text: ERROR_CONFIG.text,
     icon: ERROR_CONFIG.icon

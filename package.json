@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
+    "lint": "eslint .",
     "preview": "vite preview",
     "check-dependencies": "npm outdated",
-    "src-to-txt": "npx repomix .",
-    "test": "vitest run"
+    "src-to-txt": "npx repomix ."
   },
   "dependencies": {
     "@fancyapps/ui": "^6.1.13",
@@ -32,9 +32,9 @@
     "rollup-plugin-visualizer": "^7.0.1",
     "sass-embedded": "^1.99.0",
     "typescript": "^6.0.2",
+    "typescript-eslint": "^8.59.1",
     "vite": "^8.0.8",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vitest": "^4.1.4",
     "vue-tsc": "^3.2.6"
   }
 }

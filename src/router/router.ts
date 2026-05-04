@@ -1,9 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import { APP_CONFIG } from '@/config/app.config'
-
-const APP_NAME = APP_CONFIG.global.appName
 
 export const RouteName = {
     Home: 'Home',
@@ -68,9 +65,8 @@ const routes: RouteRecordRaw[] = [
 export const router = createRouter({
     history: createWebHistory(),
     routes,
-    scrollBehavior(to, from, savedPosition) {
+    scrollBehavior(_to, _from, savedPosition) {
         return savedPosition || { top: 0 }
     }
 })
-
 
