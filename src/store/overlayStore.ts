@@ -16,12 +16,16 @@ export const useOverlay = () => {
     }
 
     const toggleOverlay = () => {
-        document.body.hasAttribute('data-overlay') ? hideOverlay() : showOverlay()
+        if (document.body.hasAttribute('data-overlay')) {
+            hideOverlay()
+        } else {
+            showOverlay()
+        }
     }
 
     const mediaQuery = window.matchMedia('(max-width: 1024px)')
 
-    const handleMediaChange = (e: MediaQueryListEvent) => {
+    const handleMediaChange = () => {
         hideOverlay()
     }
 

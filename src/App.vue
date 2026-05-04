@@ -4,7 +4,6 @@ import { useRoute } from 'vue-router'
 import { useHead } from '@vueuse/head'
 import TheHeader from '@/layouts/TheHeader/TheHeader.vue'
 import TheFooter from '@/layouts/TheFooter/TheFooter.vue'
-import { overlayState } from '@/store/overlayStore'
 import { APP_CONFIG } from '@/config/app.config'
 
 const route = useRoute()
@@ -20,9 +19,6 @@ const classes = computed(() => ({
     'filters-wrapper': hasFilters.value
 }))
 
-const isInert = computed(() => {
-    return overlayState.overlayIsOpen === true
-})
 </script>
 
 <template>

@@ -6,7 +6,7 @@ import { GenresResponseDTO } from '@/types/DTO/GenresDTO'
 
 const ENDPOINT = '/genres'
 
-export const fetchGenres = async (params?: {}): Promise<IGenres[]> => {
+export const fetchGenres = async (params?: Record<string, unknown>): Promise<IGenres[]> => {
     const response = await api.get<GenresResponseDTO>(ENDPOINT, { params })
     return response.data.results.map(GenresModel)
 }
