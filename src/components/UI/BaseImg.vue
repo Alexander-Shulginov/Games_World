@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 import errorPl from '@/assets/img/common/error-placeholder.png'
 
@@ -16,6 +16,7 @@ withDefaults(
 
 const isLoading = ref(true)
 const hasError = ref(false)
+const imgRef = ref<HTMLImageElement | null>(null)
 
 const onLoad = () => {
     isLoading.value = false
@@ -25,12 +26,19 @@ const onError = () => {
     hasError.value = true
     isLoading.value = false
 }
+
+onMounted(() => {
+    if (imgRef.value?.complete) {
+        onLoad()
+    }
+})
 </script>
 
 <template>
     <div class="image-wrapper">
         <div v-if="isLoading" class="spinner" />
         <img
+            ref="imgRef"
             :src="hasError ? errorPl : src"
             :alt="alt"
             :width="width"
@@ -64,6 +72,8 @@ const onError = () => {
 }
 
 img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
