@@ -5,11 +5,11 @@ import { useQuery } from '@tanstack/vue-query'
 import { fetchGames } from '@/services/gamesService'
 import { useRoute } from 'vue-router'
 
-import SearchField from '@/components/Common/SearchField.vue'
-import ListGamesTopCardsLayout from '@/components/ListGames/ListGamesCardsLayout.vue'
-import ListGamesResults from '@/components/ListGames/ListGamesResults.vue'
-import ListGamesContent from '@/components/ListGames/ListGamesContent.vue'
-import ListGamesNavigation from '@/components/ListGames/ListGamesNavigation.vue'
+import SearchField from '@/components/Shared/SearchField.vue'
+import GamesExplorerTopCardsLayout from '@/components/GamesExplorer/GamesExplorerCardsLayout.vue'
+import GamesExplorerResults from '@/components/GamesExplorer/GamesExplorerResults.vue'
+import GamesExplorerContent from '@/components/GamesExplorer/GamesExplorerContent.vue'
+import GamesExplorerNavigation from '@/components/GamesExplorer/GamesExplorerNavigation.vue'
 
 const route = useRoute()
 const selectedRadio = ref('')
@@ -26,25 +26,25 @@ const {
 
 <template>
     <section aria-label="Games page">
-    <div class="listGames">
-        <SearchField class="listGames__search" />
+    <div class="gamesExplorer">
+        <SearchField class="gamesExplorer__search" />
 
-        <div class="listGames__top">
-            <ListGamesResults :results="games?.count" />
-            <ListGamesTopCardsLayout v-model="selectedRadio" />
+        <div class="gamesExplorer__top">
+            <GamesExplorerResults :results="games?.count" />
+            <GamesExplorerTopCardsLayout v-model="selectedRadio" />
         </div>
 
-        <div class="listGames__content">
-            <ListGamesContent :is-fetching="isFetching" :games="games" :layout="selectedRadio" />
+        <div class="gamesExplorer__content">
+            <GamesExplorerContent :is-fetching="isFetching" :games="games" :layout="selectedRadio" />
         </div>
 
-        <ListGamesNavigation :games="games" :is-fetching="isFetching" />
+        <GamesExplorerNavigation :games="games" :is-fetching="isFetching" />
     </div>
     </section>
 </template>
 
 <style lang="scss">
-.listGames {
+.gamesExplorer {
     @media (max-width: 1024px) {
         padding-top: 50px;
     }

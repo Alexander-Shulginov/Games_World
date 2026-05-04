@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import StarRating from '@/components/Common/StarRating.vue'
+import StarRating from '@/components/Shared/StarRating.vue'
 import { IGameById } from '@/types/interfaces/IGameById'
 import { formatDate } from '@/utils/formatDate'
 

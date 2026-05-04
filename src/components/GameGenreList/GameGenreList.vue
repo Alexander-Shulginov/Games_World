@@ -3,7 +3,8 @@ import { ref } from 'vue'
 import { Pagination } from 'swiper/modules'
 import { useSwiper } from '@/composables/useSwiper'
 import { genreList } from '@/types/genres'
-import GenreListCard from '@/components/GenreList/GenreListCard.vue'
+import CardGenreList from '@/components/Cards/CardGenreList.vue'
+
 
 const swiperGenre = ref<HTMLElement | null>(null)
 
@@ -37,7 +38,7 @@ useSwiper(swiperGenre, {
     <section class="genreList" aria-label="Genre list">
         <div class="swiper genreList__swiper" ref="swiperGenre">
             <div class="swiper-wrapper">
-                <GenreListCard v-for="genre in genreList" :key="genre.genreId" :data="genre" class="swiper-slide" />
+                <CardGenreList v-for="genre in genreList" :key="genre.genreId" :data="genre" class="swiper-slide" />
             </div>
         </div>
         <div class="swiper-pagination genreList-pagination"></div>

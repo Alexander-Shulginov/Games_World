@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BaseImg from '@/components/UI/BaseImg.vue'
-import StarRating from '@/components/Common/StarRating.vue'
+import StarRating from '@/components/Shared/StarRating.vue'
 import type { IGame } from '@/types/interfaces/IGames'
 
 defineProps<{
