@@ -3,9 +3,10 @@ import { onMounted, onUnmounted, ref, nextTick } from 'vue'
 import { Fancybox } from '@fancyapps/ui'
 import { useSwiper } from '@/composables/useSwiper'
 import { Pagination } from 'swiper/modules'
-import '@fancyapps/ui/dist/fancybox/fancybox.css'
+import BaseImg from '@/components/UI/BaseImg.vue'
 import { IGameById } from '@/types/interfaces/IGameById'
 import { IListGamesScreens } from '@/types/interfaces/IGameScreens'
+import '@fancyapps/ui/dist/fancybox/fancybox.css'
 
 defineProps<{
     data: IGameById | undefined
@@ -69,10 +70,10 @@ onUnmounted(() => {
     <div class="gameInfo__gallery">
         <div class="swiper" ref="gallerySwiper">
             <div class="swiper-wrapper">
-                <a v-for="screen in screens" data-fancybox="gallery" :key="screen.id" :href="screen.img" class="swiper-slide"
-                    tabindex="-1">
-                    <img class="gameInfo__gallery-img" :width="screen.width" :height="screen.height"
-                        :src="screen.img" :alt="data?.name" />
+                <a v-for="screen in screens" data-fancybox="gallery" :key="screen.id" :href="screen.img"
+                    class="swiper-slide" tabindex="-1">
+                    <BaseImg :src="screen.img" :alt="data?.name" :width="screen.width" :height="screen.height"
+                        class="gameInfo__gallery-img" />
                 </a>
             </div>
             <div class="swiper-pagination"></div>
