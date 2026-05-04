@@ -1,8 +1,12 @@
 import { ref, watch } from "vue";
 
-export const useOverlay = () => {
-    const overlayIsOpen = ref(false);
+const overlayIsOpen = ref(false);
 
+watch(overlayIsOpen, (val: boolean) => {
+    document.body.toggleAttribute('data-overlay', val)
+})
+
+export const useOverlay = () => {
     const showOverlay = () => {
         overlayIsOpen.value = true;
     }
@@ -14,10 +18,6 @@ export const useOverlay = () => {
     const toggleOverlay = () => {
         overlayIsOpen.value = !overlayIsOpen.value;
     }
-
-    watch(overlayIsOpen, (val: boolean) => {
-        document.body.toggleAttribute('data-overlay', val)
-    })
 
     return { overlayIsOpen, showOverlay, hideOverlay, toggleOverlay }
 }
