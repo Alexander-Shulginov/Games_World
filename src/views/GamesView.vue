@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/vue-query'
 import { fetchGames } from '@/services/gamesService'
 import { useRoute } from 'vue-router'
 
-import SearchField from '@/components/Shared/SearchField.vue'
+import SearchField from '@/components/UI/Controls/SearchField.vue'
 import GamesExplorerTopCardsLayout from '@/components/GamesExplorer/GamesExplorerCardsLayout.vue'
 import GamesExplorerResults from '@/components/GamesExplorer/GamesExplorerResults.vue'
 import GamesExplorerContent from '@/components/GamesExplorer/GamesExplorerContent.vue'

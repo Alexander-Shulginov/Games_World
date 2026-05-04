@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useQuery } from '@tanstack/vue-query'
 import { fetchPlatforms } from '@/services/platformsService'
-import BaseCheckbox from '@/components/UI/BaseCheckbox.vue'
+import VCheckbox from '@/components/UI/Controls/VCheckbox.vue'
 import BaseLoader from '@/components/UI/BaseLoader.vue'
 import { useUrlCheckboxFilter } from '@/composables/useUrlCheckboxFilter'
 
@@ -19,12 +19,7 @@ const { data: platforms, isLoading } = useQuery({
     </p>
     <ul class="filters__items" :class="{ 'filters__items--expanded': isExpand }">
         <li v-for="platform in platforms?.results" :key="platform.id">
-            <BaseCheckbox
-                :id="platform.slug"
-                :text="platform.name"
-                :value="platform.id"
-                v-model="platformValue"
-            />
+            <VCheckbox :id="platform.slug" :text="platform.name" :value="platform.id" v-model="platformValue" />
         </li>
         <li v-if="isLoading" class="filters__loader">
             <BaseLoader />

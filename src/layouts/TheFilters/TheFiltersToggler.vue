@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import BaseBurger from '@/components/UI/BaseBurger.vue'
+import BaseBurger from '@/components/UI/Controls/BaseBurger.vue'
 defineEmits<{
-    click: []
+    'burgerClick': [];
 }>()
 </script>
 
 <template>
     <div class="filtersToggle">
-        <BaseBurger class="closeFilters" @click.stop="$emit('click')" />
+        <BaseBurger class="closeFilters" @click="$emit('burgerClick')" />
     </div>
 </template>
 

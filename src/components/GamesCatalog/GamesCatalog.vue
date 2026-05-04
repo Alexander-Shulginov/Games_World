@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import GamesCatalogList from '@/components/GamesCatalog/GamesCatalogList.vue'
-import BaseTitle from '@/components/UI/BaseTitle.vue'
+import VTitle from '@/components/UI/Typography/VTitle.vue'
 import { fetchGames } from '@/services/gamesService'
 import { getCurrentYearRange } from '@/utils/formatDate';
 import { useQuery } from '@tanstack/vue-query'
@@ -52,25 +52,27 @@ const { data: xboxGames, isPending: xboxGamesLoading, isError: xboxGamesError } 
 <template>
     <section class="gamesCatalog" aria-label="Catalog of games">
         <div class="gamesCatalog__column">
-            <BaseTitle :tag="'h2'" class="gamesCatalog__title">New Releases</BaseTitle>
+            <VTitle :tag="'h2'" class="gamesCatalog__title">New Releases</VTitle>
             <GamesCatalogList :games="releasedGames?.results ?? []" :is-loading="releasedGamesLoading"
                 :is-error="releasedGamesError" />
         </div>
 
         <div class="gamesCatalog__column">
-            <BaseTitle :tag="'h2'" class="gamesCatalog__title">PlayStation</BaseTitle>
+            <VTitle :tag="'h2'" class="gamesCatalog__title">PlayStation</VTitle>
             <GamesCatalogList :games="playstationGames?.results ?? []" :is-loading="playStationLoading"
                 :is-error="playStationError" />
         </div>
 
         <div class="gamesCatalog__column">
-            <BaseTitle :tag="'h2'" class="gamesCatalog__title">Xbox</BaseTitle>
-            <GamesCatalogList :games="xboxGames?.results ?? []" :is-loading="xboxGamesLoading" :is-error="xboxGamesError" />
+            <VTitle :tag="'h2'" class="gamesCatalog__title">Xbox</VTitle>
+            <GamesCatalogList :games="xboxGames?.results ?? []" :is-loading="xboxGamesLoading"
+                :is-error="xboxGamesError" />
         </div>
 
         <div class="gamesCatalog__column">
-            <BaseTitle :tag="'h2'" class="gamesCatalog__title">Old school</BaseTitle>
-            <GamesCatalogList :games="oldGames?.results ?? []" :is-loading="oldGamesLoading" :is-error="oldGamesError" />
+            <VTitle :tag="'h2'" class="gamesCatalog__title">Old school</VTitle>
+            <GamesCatalogList :games="oldGames?.results ?? []" :is-loading="oldGamesLoading"
+                :is-error="oldGamesError" />
         </div>
     </section>
 </template>

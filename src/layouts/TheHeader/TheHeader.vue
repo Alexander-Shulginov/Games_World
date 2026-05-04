@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import BaseLogo from '@/components/UI/BaseLogo.vue'
+import VLogo from '@/components/UI/Brand/VLogo.vue'
 import TheHeaderNav from '@/layouts/TheHeader/TheHeaderNav.vue'
-import BaseGitHubLink from '@/components/UI/BaseGitHubLink.vue'
+import VGitHubLink from '@/components/UI/Brand/VGitHubLink.vue'
 </script>
 
 <template>
     <header ref="headerRef" class="header">
         <div class="header__inner">
-            <BaseLogo />
+            <VLogo />
             <TheHeaderNav class="header__nav" />
-            <BaseGitHubLink class="header__gh" />
+            <VGitHubLink class="header__gh" />
         </div>
     </header>
 </template>

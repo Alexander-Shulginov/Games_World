@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import BaseText from '@/components/UI/BaseText.vue'
-import { APP_CONFIG } from '@/config/app.config';
-import { getCurrentYear } from '@/utils/getCurrentYear';
+import VText from '@/components/UI/Typography/VText.vue'
+import { APP_CONFIG } from '@/config/app.config'
+import { getCurrentYear } from '@/utils/getCurrentYear'
 </script>
 
 <template>
     <div class="footer__policy">
-        <BaseText :size="'small'" :color="'second'">Released under the MIT License.</BaseText>
+        <VText :size="'small'" :color="'second'">Released under the MIT License.</VText>
 
-        <BaseText :size="'small'" :color="'second'">
+        <VText :size="'small'" :color="'second'">
             Copyright ©
             {{ getCurrentYear() }}
             <a
@@ -19,7 +19,7 @@ import { getCurrentYear } from '@/utils/getCurrentYear';
             >
                 {{ APP_CONFIG.global.authorName }}
             </a>
-        </BaseText>
+        </VText>
     </div>
 </template>
 

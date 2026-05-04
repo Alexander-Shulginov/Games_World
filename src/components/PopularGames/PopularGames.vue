@@ -3,9 +3,9 @@ import { useQuery } from '@tanstack/vue-query'
 import { fetchGames } from '@/services/gamesService'
 import PopularGamesCarousel from '@/components/PopularGames/PopularGamesCarousel.vue'
 import TheError from '@/components/UI/TheError.vue'
-import BaseTitle from '@/components/UI/BaseTitle.vue'
+import VTitle from '@/components/UI/Typography/VTitle.vue'
 import BaseLoader from '@/components/UI/BaseLoader.vue'
-import BaseLink from '@/components/UI/BaseLink.vue'
+import VLink from '@/components/UI/Controls/VLink.vue'
 
 const { isPending, data, isError, refetch } = useQuery({
     queryKey: ['getGames'],
@@ -17,8 +17,8 @@ const { isPending, data, isError, refetch } = useQuery({
 <template>
     <section class="popularGames">
         <div class="popularGames__top">
-            <BaseTitle :tag="'h2'" :is-bold="true" class="popularGames__title">Most Popular</BaseTitle>
-            <BaseLink :to="{ name: 'Games' }" :text="'View all'" :size="'compact'" />
+            <VTitle :tag="'h2'" :is-bold="true" class="popularGames__title">Most Popular</VTitle>
+            <VLink :to="{ name: 'Games' }" :text="'View all'" :size="'compact'" />
         </div>
         <div class="popularGames__content">
             <TheError v-if="isError" :retry-action="refetch" />

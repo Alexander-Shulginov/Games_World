@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseTitle from '@/components/UI/BaseTitle.vue'
+import VTitle from '@/components/UI/Typography/VTitle.vue'
 import { popularCategory } from '@/types/popularCategory'
 
 const props = defineProps<{
@@ -23,17 +23,14 @@ const selectCategory = (slug: string, index: number) => {
 
 <template>
     <div class="PopularCategory__nav">
-        <BaseTitle :tag="'h2'" :is-bold="true" class="PopularCategory__nav-title">
+        <VTitle :tag="'h2'" :is-bold="true" class="PopularCategory__nav-title">
             Popular By Category
-        </BaseTitle>
+        </VTitle>
         <ul class="PopularCategory__nav-list">
             <li class="PopularCategory__nav-item" v-for="(category, index) in popularCategory" :key="category.slug">
-                <button
-                    class="PopularCategory__nav-btn"
-                    :class="{ 'PopularCategory__nav-btn--active': clickedItem === index }"
-                    type="button"
-                    @click="selectCategory(category.slug, index)"
-                >
+                <button class="PopularCategory__nav-btn"
+                    :class="{ 'PopularCategory__nav-btn--active': clickedItem === index }" type="button"
+                    @click="selectCategory(category.slug, index)">
                     {{ category.name }}
                 </button>
             </li>

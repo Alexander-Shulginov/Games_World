@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseTitle from '@/components/UI/BaseTitle.vue'
+import VTitle from '@/components/UI/Typography/VTitle.vue'
 
 const isCompact = ref<boolean>(true)
 
@@ -11,14 +11,11 @@ const toggleContent = () => {
 
 <template>
     <section aria-label="Project information" class="project-info">
-        <div
-            class="project-info__content"
-            :class="isCompact ? 'project-info__content--compact' : false"
-            :aria-expanded="isCompact"
-        >
-            <BaseTitle :tag="'h3'">
+        <div class="project-info__content" :class="isCompact ? 'project-info__content--compact' : false"
+            :aria-expanded="isCompact">
+            <VTitle :tag="'h3'">
                 Discover the World of Games: New Releases, Hits, and Exclusives
-            </BaseTitle>
+            </VTitle>
             <p>
                 The gaming industry is evolving rapidly, and we help you stay up to date with all
                 the latest events. On our site, you'll find reviews of the most anticipated
@@ -34,9 +31,9 @@ const toggleContent = () => {
                 the right place.
             </p>
             <br />
-            <BaseTitle :tag="'h3'">
+            <VTitle :tag="'h3'">
                 Everything About Gaming: Genres, Platforms, and Trends
-            </BaseTitle>
+            </VTitle>
             <p>
                 Every gamer has their own path—whether it's thrilling RPG adventures, intense
                 shooters, or strategic puzzles.
@@ -87,6 +84,7 @@ const toggleContent = () => {
     &__content {
         overflow: hidden;
         position: relative;
+
         &::after {
             content: '';
             width: 100%;
@@ -113,12 +111,11 @@ const toggleContent = () => {
 
     &__content--compact {
         height: 180px;
+
         &::after {
-            background-image: linear-gradient(
-                180deg,
-                rgba(20, 20, 20, 0) 0%,
-                rgba(20, 20, 20, 1) 100%
-            );
+            background-image: linear-gradient(180deg,
+                    rgba(20, 20, 20, 0) 0%,
+                    rgba(20, 20, 20, 1) 100%);
         }
     }
 }

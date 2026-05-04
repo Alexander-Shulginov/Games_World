@@ -3,16 +3,23 @@ import TheFiltersSort from '@/layouts/TheFilters/TheFiltersSort.vue'
 import TheFiltersByYears from '@/layouts/TheFilters/TheFiltersByYears.vue'
 import TheFiltersByGenres from '@/layouts/TheFilters/TheFiltersByGenres.vue'
 import TheFiltersByPlatforms from '@/layouts/TheFilters/TheFiltersByPlatforms.vue'
-import { filtersState, toggleFilters } from '@/store/filtersStore'
 import TheFiltersToggler from '@/layouts/TheFilters/TheFiltersToggler.vue'
-import { useOverlay } from '@/store/overlayStore'
+import { useOverlay } from '@/composables/useOverlay'
+import { ref } from 'vue'
 
 const { toggleOverlay } = useOverlay()
+
+const isOpen = ref(false);
+
+const onToggle = () => {
+    isOpen.value = !isOpen.value;
+    toggleOverlay();
+}
 </script>
 
 <template>
-    <aside class="filters" :class="{ 'filters--active': filtersState.isOpen }">
-        <TheFiltersToggler @click="toggleFilters(), toggleOverlay()" class="filters__close-btn" />
+    <aside class="filters" :class="{ 'filters--active': isOpen }">
+        <TheFiltersToggler @burger-click="onToggle" class="filters__close-btn" />
         <div class="filters__content">
             <div class="filters__block">
                 <TheFiltersSort />

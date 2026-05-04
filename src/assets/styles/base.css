@@ -41,7 +41,7 @@ main {
 }
 
 @media (max-width: 1024px) {
-    [data-overlay='true'] .wrapper::after {
+    [data-overlay] .wrapper::after {
         background-color: rgba(0, 0, 0, 0.7);
         pointer-events: initial;
         z-index: 4;

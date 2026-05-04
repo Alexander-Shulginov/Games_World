@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BaseTitle from '@/components/UI/BaseTitle.vue'
+import VTitle from '@/components/UI/Typography/VTitle.vue'
 import TheFooterNavList from '@/layouts/TheFooter/TheFooterNavList.vue'
 import { FOOTER_CONFIG } from '@/config/footer.config'
 </script>
@@ -7,7 +7,7 @@ import { FOOTER_CONFIG } from '@/config/footer.config'
 <template>
     <nav class="footer__nav" aria-label="Footer navigation">
         <div v-for="link, index in FOOTER_CONFIG.links" :key="index">
-            <BaseTitle :tag="'h4'" :is-bold="true" class="footer__subtitle">{{ link.title }}</BaseTitle>
+            <VTitle :tag="'h4'" :is-bold="true" class="footer__subtitle">{{ link.title }}</VTitle>
             <TheFooterNavList :items="link" />
         </div>
     </nav>

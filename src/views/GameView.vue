@@ -9,14 +9,14 @@ import {
 } from '@/services/gamesService'
 import { useQuery } from '@tanstack/vue-query'
 import { useRoute } from 'vue-router'
-import BaseTitle from '@/components/UI/BaseTitle.vue'
+import VTitle from '@/components/UI/Typography/VTitle.vue'
 import BaseImg from '@/components/UI/BaseImg.vue'
 import GameInfoDetails from '@/components/GameInfo/GameInfoDetails.vue'
 import GameInfoGallery from '@/components/GameInfo/GameInfoGallery.vue'
 import GameInfoSeries from '@/components/GameInfo/GameInfoSeries.vue'
 import GameInfoTags from '@/components/GameInfo/GameInfoTags.vue'
-import MetacriticRating from '@/components/Shared/MetacriticRating.vue'
-import EsrbRating from '@/components/Shared/EsrbRating.vue'
+import MetacriticRating from '@/components/UI/Rating/MetacriticRating.vue'
+import EsrbRating from '@/components/UI/Rating/EsrbRating.vue'
 import GameInfoUserRating from '@/components/GameInfo/GameInfoUserRating.vue'
 import GameInfoDescription from '@/components/GameInfo/GameInfoDescription.vue'
 import BaseLoader from '@/components/UI/BaseLoader.vue'
@@ -52,7 +52,7 @@ useHead({
 
 <template>
     <section aria-label="Game page">
-        <TheError v-if="isError"/>
+        <TheError v-if="isError" />
         <BaseLoader v-else-if="isLoading" />
         <div class="gameInfo" v-else-if="game">
             <div class="gameInfo__wrap">
@@ -62,7 +62,7 @@ useHead({
                 </div>
                 <div class="gameInfo__right">
                     <div class="gameInfo__top">
-                        <BaseTitle :tag="'h1'" class="gameInfo__name">{{ game.name }}</BaseTitle>
+                        <VTitle :tag="'h1'" class="gameInfo__name">{{ game.name }}</VTitle>
 
                         <MetacriticRating v-if="game.metacritic > 0" :value="game.metacritic" />
                     </div>

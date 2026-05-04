@@ -8,7 +8,7 @@ import witcherImg from '@/assets/img/main/witcher.webp'
 const GamesCatalog = defineAsyncComponent(() => import('@/components/GamesCatalog/GamesCatalog.vue'))
 const PopularCategory = defineAsyncComponent(() => import('@/components/PopularCategory/PopularCategory.vue'))
 const PopularGames = defineAsyncComponent(() => import('@/components/PopularGames/PopularGames.vue'))
-const BaseScrollToTop = defineAsyncComponent(() => import('@/components/UI/BaseScrollToTop.vue'))
+const ScrollToTop = defineAsyncComponent(() => import('@/components/UI/Controls/ScrollToTop.vue'))
 const ProjectInfo = defineAsyncComponent(() => import('@/components/Home/ProjectInfo.vue'))
 
 useHead({
@@ -35,6 +35,6 @@ useHead({
         <PopularCategory />
         <GamesCatalog />
         <ProjectInfo />
-        <BaseScrollToTop />
+        <ScrollToTop />
     </div>
 </template>

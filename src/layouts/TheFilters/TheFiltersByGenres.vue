@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useQuery } from '@tanstack/vue-query'
 import { fetchGenres } from '@/services/genresService'
-import BaseCheckbox from '@/components/UI/BaseCheckbox.vue'
+import VCheckbox from '@/components/UI/Controls/VCheckbox.vue'
 import BaseLoader from '@/components/UI/BaseLoader.vue'
 import { useUrlCheckboxFilter } from '@/composables/useUrlCheckboxFilter'
 
@@ -20,12 +20,7 @@ const { data: genres, isLoading } = useQuery({
     </p>
     <ul class="filters__items" :class="{ 'filters__items--expanded': isExpand }">
         <li v-for="genre in genres" :key="genre.id">
-            <BaseCheckbox
-                :id="genre.slug"
-                :text="genre.name"
-                :value="genre.id"
-                v-model="genresValue"
-            />
+            <VCheckbox :id="genre.slug" :text="genre.name" :value="genre.id" v-model="genresValue" />
         </li>
         <li v-if="isLoading" class="filters__loader">
             <BaseLoader />

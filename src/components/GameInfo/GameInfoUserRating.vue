@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-    <div v-if="userRating" class="userRating">
+    <div v-if="userRating?.length" class="userRating">
         <div class="userRating__block">
             <div v-for="rating in userRating" :key="rating.id" class="userRating__item">
                 <div class="userRating__circle" :style="`--percent: ${rating.percent}%`">

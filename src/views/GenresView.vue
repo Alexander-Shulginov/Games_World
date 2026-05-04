@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import BaseTitle from '@/components/UI/BaseTitle.vue'
+import VTitle from '@/components/UI/Typography/VTitle.vue'
 import { useQuery } from '@tanstack/vue-query'
 import { fetchGenres } from '@/services/genresService'
 import BaseLoader from '@/components/UI/BaseLoader.vue'
-import TheError from '@/components/UI/TheError.vue';
+import TheError from '@/components/UI/TheError.vue'
 import CardGenre from '@/components/Cards/CardGenre.vue'
 
 const { data, isPending, isError, refetch } = useQuery({
@@ -14,11 +14,12 @@ const { data, isPending, isError, refetch } = useQuery({
 
 <template>
     <section class="allGenres" aria-label="All genres page">
-        <BaseTitle :tag="'h1'" class="allGenres__title">Explore All Genres</BaseTitle>
-        <p class="allGenres__text">Dive into a universe of games across every genre. <br/> Find your next adventure today!</p>
+        <VTitle :tag="'h1'" class="allGenres__title">Explore All Genres</VTitle>
+        <p class="allGenres__text">Dive into a universe of games across every genre. <br /> Find your next adventure
+            today!</p>
 
         <div class="allGenres__wrapper">
-            <TheError v-if="isError" :retry-action="refetch"/>
+            <TheError v-if="isError" :retry-action="refetch" />
             <BaseLoader v-else-if="isPending" />
             <ul v-else class="allGenres__list" aria-label="Genres">
                 <li v-for="genre in data" :key="genre.id">

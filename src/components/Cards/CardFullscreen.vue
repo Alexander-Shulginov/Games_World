@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BaseLink from '@/components/UI/BaseLink.vue'
+import VLink from '@/components/UI/Controls/VLink.vue'
 
 interface GameData {
     id: number
@@ -38,7 +38,7 @@ defineProps<{
                 {{ data.descr }}
             </p>
             <div class="cardFull__block" data-swiper-anim>
-                <BaseLink
+                <VLink
                     :to="{ name: 'Game', params: { id: data.id } }"
                     :text="'Details'"
                     :size="'large'"

@@ -1,38 +1,16 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { ref } from 'vue'
 
 const isOpen = ref(false)
 
 const toggleBurger = () => {
     isOpen.value = !isOpen.value
 }
-
-let mediaQuery: MediaQueryList | null = null
-
-const handleMediaChange = () => {
-    isOpen.value = false
-}
-
-onMounted(() => {
-    mediaQuery = window.matchMedia('(max-width: 1024px)')
-    mediaQuery.addEventListener('change', handleMediaChange)
-    handleMediaChange()
-})
-
-onUnmounted(() => {
-    mediaQuery?.removeEventListener('change', handleMediaChange)
-})
 </script>
 
 <template>
-    <button
-        type="button"
-        @click="toggleBurger"
-        class="burger"
-        :class="{ 'burger--active': isOpen }"
-        :aria-pressed="isOpen"
-        aria-label="Toggle menu"
-    >
+    <button type="button" @click="toggleBurger" class="burger" :class="{ 'burger--active': isOpen }"
+        :aria-pressed="isOpen" aria-label="Toggle menu">
         <span></span>
         <span></span>
         <span></span>

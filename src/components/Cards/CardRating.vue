@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BaseImg from '@/components/UI/BaseImg.vue'
-import StarRating from '@/components/Shared/StarRating.vue'
+import StarRating from '@/components/UI/Rating/StarRating.vue'
 import type { IGame } from '@/types/interfaces/IGames'
 
 defineProps<{
@@ -10,13 +10,7 @@ defineProps<{
 
 <template>
     <router-link :to="{ name: 'Game', params: { id: game.id } }" class="cardRating">
-        <BaseImg
-            :src="game.image"
-            :alt="game.name"
-            :width="70"
-            :height="90"
-            class="cardRating__img"
-        />
+        <BaseImg :src="game.image" :alt="game.name" :width="70" :height="90" class="cardRating__img" />
         <div class="cardRating__wrap">
             <p class="cardRating__name">{{ game.name }}</p>
             <div class="cardRating__rating" v-if="game.rating">
