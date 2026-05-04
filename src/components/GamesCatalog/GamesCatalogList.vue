@@ -18,15 +18,15 @@ withDefaults(defineProps<Props>(), {
 <template>
     <TheError v-if="isError" />
     <BaseLoader v-else-if="isLoading" />
-    <ul v-else class="catalogGames__list" aria-label="Games list">
-        <li class="catalogGames__item" v-for="game in games" :key="game.id">
+    <ul v-else class="gamesCatalog__list" aria-label="Games list">
+        <li class="gamesCatalog__item" v-for="game in games" :key="game.id">
             <CardRating :game="game" />
         </li>
     </ul>
 </template>
 
 <style lang="scss" scoped>
-.catalogGames {
+.gamesCatalog {
     position: relative;
 
     &__list {

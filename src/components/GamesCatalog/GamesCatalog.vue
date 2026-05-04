@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CatalogGamesList from '@/components/CatalogGames/CatalogGamesList.vue'
+import GamesCatalogList from '@/components/GamesCatalog/GamesCatalogList.vue'
 import BaseTitle from '@/components/UI/BaseTitle.vue'
 import { fetchGames } from '@/services/gamesService'
 import { getCurrentYearRange } from '@/utils/formatDate';
@@ -50,33 +50,33 @@ const { data: xboxGames, isPending: xboxGamesLoading, isError: xboxGamesError } 
 </script>
 
 <template>
-    <section class="catalogGames" aria-label="Catalog of games">
-        <div class="catalogGames__column">
-            <BaseTitle :tag="'h2'" class="catalogGames__title">New Releases</BaseTitle>
-            <CatalogGamesList :games="releasedGames?.results ?? []" :is-loading="releasedGamesLoading"
+    <section class="gamesCatalog" aria-label="Catalog of games">
+        <div class="gamesCatalog__column">
+            <BaseTitle :tag="'h2'" class="gamesCatalog__title">New Releases</BaseTitle>
+            <GamesCatalogList :games="releasedGames?.results ?? []" :is-loading="releasedGamesLoading"
                 :is-error="releasedGamesError" />
         </div>
 
-        <div class="catalogGames__column">
-            <BaseTitle :tag="'h2'" class="catalogGames__title">PlayStation</BaseTitle>
-            <CatalogGamesList :games="playstationGames?.results ?? []" :is-loading="playStationLoading"
+        <div class="gamesCatalog__column">
+            <BaseTitle :tag="'h2'" class="gamesCatalog__title">PlayStation</BaseTitle>
+            <GamesCatalogList :games="playstationGames?.results ?? []" :is-loading="playStationLoading"
                 :is-error="playStationError" />
         </div>
 
-        <div class="catalogGames__column">
-            <BaseTitle :tag="'h2'" class="catalogGames__title">Xbox</BaseTitle>
-            <CatalogGamesList :games="xboxGames?.results ?? []" :is-loading="xboxGamesLoading" :is-error="xboxGamesError" />
+        <div class="gamesCatalog__column">
+            <BaseTitle :tag="'h2'" class="gamesCatalog__title">Xbox</BaseTitle>
+            <GamesCatalogList :games="xboxGames?.results ?? []" :is-loading="xboxGamesLoading" :is-error="xboxGamesError" />
         </div>
 
-        <div class="catalogGames__column">
-            <BaseTitle :tag="'h2'" class="catalogGames__title">Old school</BaseTitle>
-            <CatalogGamesList :games="oldGames?.results ?? []" :is-loading="oldGamesLoading" :is-error="oldGamesError" />
+        <div class="gamesCatalog__column">
+            <BaseTitle :tag="'h2'" class="gamesCatalog__title">Old school</BaseTitle>
+            <GamesCatalogList :games="oldGames?.results ?? []" :is-loading="oldGamesLoading" :is-error="oldGamesError" />
         </div>
     </section>
 </template>
 
 <style lang="scss" scoped>
-.catalogGames {
+.gamesCatalog {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;

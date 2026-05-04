@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CardProduct from '@/components/Cards/CardProduct.vue'
 import BaseLoader from '@/components/UI/BaseLoader.vue'
-import ListGamesError from '@/components/ListGames/ListGamesError.vue'
+import GamesExplorerError from '@/components/GamesExplorer/GamesExplorerError.vue'
 import { IListGames } from '@/types/interfaces/IGames'
 
 defineProps<{
@@ -13,7 +13,7 @@ defineProps<{
 
 <template>
     <BaseLoader v-if="isFetching" />
-    <ListGamesError v-else-if="games?.count === 0" />
+    <GamesExplorerError v-else-if="games?.count === 0" />
     <div v-else class="grid-card" :class="layout">
         <CardProduct
             v-for="game in games?.results"
