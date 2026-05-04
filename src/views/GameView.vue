@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, watchEffect } from 'vue'
+import { computed } from 'vue'
+import { useHead } from '@vueuse/head'
 import {
     fetchGameById,
     fetchGameDLC,
@@ -44,8 +45,8 @@ const { data: dlc } = useQuery({
     queryFn: () => fetchGameDLC(gameId.value)
 })
 
-watchEffect(() => {
-    document.title = isLoading.value ? 'Loading...' : game.value?.name || 'Game'
+useHead({
+    title: computed(() => isLoading.value ? 'Loading...' : game.value?.name || 'Game')
 })
 </script>
 

@@ -73,7 +73,4 @@ export const router = createRouter({
     }
 })
 
-router.afterEach((to) => {
-    const pageTitle = to.meta.title ? `${APP_NAME} | ${to.meta.title}` : APP_NAME
-    document.title = pageTitle
-})
+
