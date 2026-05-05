@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouteName } from '@/router/router'
 import { IGameById } from '@/types/interfaces/IGameById';
 
 defineProps<{
@@ -9,7 +10,7 @@ defineProps<{
 <template>
     <div class="tags" v-if="tags.length">
         <router-link
-            :to="{ name: 'Games', query: { tags: tag.slug } }"
+            :to="{ name: RouteName.Games, query: { tags: tag.slug } }"
             v-for="tag in tags"
             :key="tag.id"
             class="tags__item"

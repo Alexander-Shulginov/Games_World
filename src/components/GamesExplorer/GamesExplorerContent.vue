@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouteName } from '@/router/router'
 import CardProduct from '@/components/Cards/CardProduct.vue'
 import BaseLoader from '@/components/UI/BaseLoader.vue'
 import GamesExplorerError from '@/components/GamesExplorer/GamesExplorerError.vue'
@@ -19,7 +20,7 @@ defineProps<{
             v-for="game in games?.results"
             :key="game.id"
             :game="game"
-            :to="{ name: 'Game', params: { id: game.id } }"
+            :to="{ name: RouteName.Game, params: { id: game.id } }"
         />
     </div>
 </template>

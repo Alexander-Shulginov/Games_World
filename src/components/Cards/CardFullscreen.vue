@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouteName } from '@/router/router'
 import VLink from '@/components/UI/Controls/VLink.vue'
 
 interface GameData {
@@ -39,7 +40,7 @@ defineProps<{
             </p>
             <div class="cardFull__block" data-swiper-anim>
                 <VLink
-                    :to="{ name: 'Game', params: { id: data.id } }"
+                    :to="{ name: RouteName.Game, params: { id: data.id } }"
                     :text="'Details'"
                     :size="'large'"
                 />

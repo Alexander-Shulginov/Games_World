@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouteName } from '@/router/router'
 import { nextTick, ref, watch } from 'vue'
 import { Navigation } from 'swiper/modules'
 import { useSwiper } from '@/composables/useSwiper'
@@ -42,7 +43,7 @@ watch(
         <div class="swiper" ref="swiperPopular">
             <ul class="popularGames__list swiper-wrapper">
                 <li v-for="game in data.results" :key="game.id" class="swiper-slide">
-                    <CardGame :game="game" :to="{ name: 'Game', params: { id: game.id } }" />
+                    <CardGame :game="game" :to="{ name: RouteName.Game, params: { id: game.id } }" />
                 </li>
             </ul>
         </div>

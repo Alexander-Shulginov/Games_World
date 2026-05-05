@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouteName } from '@/router/router'
 import StarRating from '@/components/UI/Rating/StarRating.vue'
 import { IGameById } from '@/types/interfaces/IGameById'
 import { formatDate } from '@/utils/formatDate'
@@ -20,7 +21,7 @@ defineProps<{
         <div v-if="info.genres.length" class="gameDetails__item">
             <span class="gameDetails__key">Genre</span>
             <div class="gameDetails__values">
-                <router-link :to="{ name: 'Games', query: { genres: genre.id } }" v-for="genre in info.genres"
+                <router-link :to="{ name: RouteName.Games, query: { genres: genre.id } }" v-for="genre in info.genres"
                     :key="genre.id" class="gameDetails__value">{{ genre.name }}</router-link>
             </div>
         </div>
@@ -42,7 +43,7 @@ defineProps<{
             <span class="gameDetails__key">Developer</span>
             <div class="gameDetails__values">
                 <router-link :to="{
-                    name: 'Games',
+                    name: RouteName.Games,
                     query: {
                         developers: developer.id
                     }
@@ -56,7 +57,7 @@ defineProps<{
             <span class="gameDetails__key">Publisher</span>
             <div class="gameDetails__values">
                 <router-link :to="{
-                    name: 'Games',
+                    name: RouteName.Games,
                     query: {
                         publishers: publisher.id
                     }
@@ -68,7 +69,7 @@ defineProps<{
         <div v-if="info.platforms.length" class="gameDetails__item">
             <span class="gameDetails__key">Platforms</span>
             <div class="gameDetails__values">
-                <router-link :to="{ name: 'Games', query: { platforms: platform.id } }"
+                <router-link :to="{ name: RouteName.Games, query: { platforms: platform.id } }"
                     v-for="(platform) in info.platforms" :key="platform.id" class="gameDetails__value">
                     {{ platform.name }}
                 </router-link>

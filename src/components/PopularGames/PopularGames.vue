@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouteName } from '@/router/router'
 import { useQuery } from '@tanstack/vue-query'
 import { fetchGames } from '@/services/gamesService'
 import PopularGamesCarousel from '@/components/PopularGames/PopularGamesCarousel.vue'
@@ -18,7 +19,7 @@ const { isPending, data, isError, refetch } = useQuery({
     <section class="popularGames">
         <div class="popularGames__top">
             <VTitle :tag="'h2'" :is-bold="true" class="popularGames__title">Most Popular</VTitle>
-            <VLink :to="{ name: 'Games' }" :text="'View all'" :size="'compact'" />
+            <VLink :to="{ name: RouteName.Games }" :text="'View all'" :size="'compact'" />
         </div>
         <div class="popularGames__content">
             <TheError v-if="isError" :retry-action="refetch" />

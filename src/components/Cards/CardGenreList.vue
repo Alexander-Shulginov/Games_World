@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouteName } from '@/router/router'
 import VTitle from '@/components/UI/Typography/VTitle.vue'
 import BaseImg from '@/components/UI/BaseImg.vue'
 import type { Genre } from '@/types/genres'
@@ -9,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-    <router-link :to="{ name: 'Games', query: { genres: data.genreId } }" class="genreList__card"
+    <router-link :to="{ name: RouteName.Games, query: { genres: data.genreId } }" class="genreList__card"
         :aria-label="`Games in the ${data.genreName} genre`">
         <VTitle :tag="'h3'" :is-bold="true" :class="'genreList__title'">{{ data.genreName }}</VTitle>
         <BaseImg :src="data.genreImg" :alt="data.genreName" :width="440" :height="260" class="genreList__img" />

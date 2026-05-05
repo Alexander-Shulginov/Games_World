@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouteName } from '@/router/router'
 import type { IGame } from '@/types/interfaces/IGames'
 import BaseImg from '@/components/UI/BaseImg.vue'
 
@@ -9,7 +10,7 @@ defineProps<{
 
 <template>
     <router-link
-        :to="{ name: 'Game', params: { id: data.id } }"
+        :to="{ name: RouteName.Game, params: { id: data.id } }"
         class="cardPopular"
     >
         <div class="cardPopular__img-wrap">
