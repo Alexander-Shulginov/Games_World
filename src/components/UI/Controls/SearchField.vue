@@ -39,12 +39,7 @@ onUnmounted(() => clearTimeout(timeout))
 
 <template>
     <div class="searchField">
-        <input
-            class="searchField__input"
-            v-model="searchQuery"
-            type="text"
-            placeholder="Search games"
-        />
+        <input class="searchField__input" v-model="searchQuery" type="text" placeholder="Search games" />
         <span v-show="searchQuery" @click="clearInput" class="searchField__clear">
             <SvgIcon name="common-close" :size="24" />
         </span>
@@ -74,6 +69,10 @@ onUnmounted(() => clearTimeout(timeout))
         display: flex;
         align-items: center;
         justify-content: center;
+
+        svg {
+            fill: var(--color-light);
+        }
 
         @media (any-hover: hover) {
             &:hover {

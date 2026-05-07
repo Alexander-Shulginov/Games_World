@@ -2,6 +2,7 @@
 import VLogo from '@/components/UI/Brand/VLogo.vue'
 import TheHeaderNav from '@/layouts/TheHeader/TheHeaderNav.vue'
 import VGitHubLink from '@/components/UI/Brand/VGitHubLink.vue'
+import UserProfileBtn from '@/components/UI/Controls/UserProfileBtn.vue';
 </script>
 
 <template>
@@ -9,7 +10,10 @@ import VGitHubLink from '@/components/UI/Brand/VGitHubLink.vue'
         <div class="header__inner">
             <VLogo />
             <TheHeaderNav class="header__nav" />
-            <VGitHubLink class="header__gh" />
+            <div class="header__wrap">
+                <UserProfileBtn />
+                <VGitHubLink />
+            </div>
         </div>
     </header>
 </template>
@@ -56,7 +60,10 @@ import VGitHubLink from '@/components/UI/Brand/VGitHubLink.vue'
         }
     }
 
-    &__gh {
+    &__wrap {
+        display: flex;
+        align-items: center;
+        gap: 12px;
         grid-column: 4 / 5;
         grid-row: 1 / 2;
 

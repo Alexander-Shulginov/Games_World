@@ -35,6 +35,10 @@ const resetQuery = () => {
 
     transition: background-color 0.2s ease-in-out;
 
+    svg {
+        fill: var(--color-light);
+    }
+
     @media (any-hover: hover) {
         &:hover {
             background-color: var(--color-accent-hover);
