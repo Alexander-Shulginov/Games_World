@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/UI/SvgIcon.vue';
+import { usePopup } from '@/store/popupStore';
+import SiginPopup from '../Popup/SiginPopup.vue';
+const { open } = usePopup();
+
+const showSiginPopup = () => {
+    open(SiginPopup)
+}
 </script>
 
 <template>
-    <button class="user-signin" type="button" aria-label="Sign in">
+    <button @click="showSiginPopup" class="user-signin" type="button" aria-label="Sign in">
         <SvgIcon class="user-signin__icon" name="common-user-signin" />
     </button>
 </template>

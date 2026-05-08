@@ -1,42 +1,58 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/UI/SvgIcon.vue'
-import { useScrollLock } from '@/composables/useScrollLock';
-import { useTemplateRef, watch } from 'vue';
-const { lockScroll, unlockScroll } = useScrollLock();
+import { useScrollLock } from '@/composables/useScrollLock'
+import { onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue'
 
-const popupRef = useTemplateRef('dialogRef');
-const emit = defineEmits(['close']);
+const { lockScroll, unlockScroll } = useScrollLock()
 
-const props = withDefaults(
-    defineProps<{
-        isOpen: boolean
-    }>(),
-    {
-        isOpen: false
+const props = defineProps<{ isOpen: boolean }>()
+const emit = defineEmits<{
+    close: []
+}>()
+const popupRef = useTemplateRef('dialogRef')
+
+const openPopup = () => {
+    if (popupRef.value?.open) return
+
+    popupRef.value?.showModal()
+    lockScroll()
+}
+
+const closePopup = () => {
+    if (popupRef.value?.open) {
+        popupRef.value.close()
+    }
+    unlockScroll()
+}
+
+const closeHandler = () => {
+    closePopup()
+    emit('close')
+}
+
+onMounted(() => {
+    if (props.isOpen) {
+        openPopup()
+    }
+})
+
+watch(
+    () => props.isOpen,
+    (isOpen) => {
+        isOpen ? openPopup() : closePopup()
     }
 )
 
-const showPopup = () => {
-    popupRef.value?.showModal();
-    lockScroll();
-}
-
-const hidePopup = () => {
-    popupRef.value?.close();
-    unlockScroll();
-    emit('close');
-}
-
-watch(() => props.isOpen, (newValue) => {
-    newValue ? showPopup() : hidePopup();
+onBeforeUnmount(() => {
+    closePopup()
 })
 </script>
 
 <template>
     <Teleport to="body">
-        <dialog ref="dialogRef" @cancel="hidePopup" class="popup">
+        <dialog ref="dialogRef" @cancel="closeHandler" class="popup">
             <div class="popup__top">
-                <button @click="hidePopup" class="popup__close" type="button">
+                <button @click="closeHandler" class="popup__close" type="button">
                     <SvgIcon name="common-close" />
                 </button>
             </div>

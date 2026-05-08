@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { useHead } from '@vueuse/head'
 import TheHeader from '@/layouts/TheHeader/TheHeader.vue'
 import TheFooter from '@/layouts/TheFooter/TheFooter.vue'
+import PopupManager from '@/components/UI/Popup/PopupManager.vue'
 import { APP_CONFIG } from '@/config/app.config'
 
 const route = useRoute()
@@ -31,5 +32,6 @@ const classes = computed(() => ({
             </router-view>
         </main>
         <TheFooter />
+        <PopupManager />
     </div>
 </template>
