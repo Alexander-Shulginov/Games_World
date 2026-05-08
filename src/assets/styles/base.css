@@ -29,6 +29,12 @@ main {
     position: relative;
 }
 
+.scroll-lock {
+    overflow: hidden;
+    touch-action: none; /* for ios */
+    overscroll-behavior: none; /* for ios */
+}
+
 .wrapper::after {
     content: '';
     position: absolute;
