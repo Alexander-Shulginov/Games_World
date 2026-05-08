@@ -32,14 +32,14 @@ const popupIsOpen = ref(false);
 
 <template>
     <div aria-label="Home page">
-        <button @click="popupIsOpen = !popupIsOpen" type="button">popup</button>
+        <!-- <button @click="popupIsOpen = !popupIsOpen" type="button">popup</button> -->
         <MainCarousel />
         <GameGenreList />
-        <!-- <PopularGames />
+        <PopularGames />
         <PopularCategory />
         <GamesCatalog />
         <ProjectInfo />
-        <ScrollToTop /> -->
+        <ScrollToTop />
         <VPopup :is-open="popupIsOpen" @close="popupIsOpen = false" />
     </div>
 </template>
