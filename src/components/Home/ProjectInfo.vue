@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import VTitle from '@/components/UI/Typography/VTitle.vue'
 
-const isCompact = ref<boolean>(true)
+const isCompact = ref(true)
 
 const toggleContent = () => {
     isCompact.value = !isCompact.value

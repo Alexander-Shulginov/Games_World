@@ -10,6 +10,7 @@ const props = defineProps<{
 }>()
 
 const swiperCategory = ref<HTMLElement | null>(null)
+
 const { initSwiper, swiperInstance, destroySwiper } = useSwiper(swiperCategory, {
     modules: [Navigation],
     loop: true,
