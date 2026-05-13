@@ -1,16 +1,29 @@
 <script setup lang="ts">
 interface InputProps {
-    type: 'text' | 'email' | 'password'
-    placeholder: string
+    type?: string
+    placeholder?: string
     isRequired?: boolean
     isDisabled?: boolean
+    name?: string
 }
 
-defineProps<InputProps>()
+withDefaults(defineProps<InputProps>(), {
+    type: 'text'
+})
+
+const model = defineModel<string>()
 </script>
 
 <template>
-    <input :type="type" :placeholder="placeholder" :disabled="isDisabled" :required="isRequired" class="input-base">
+    <input 
+        v-model="model"
+        :type="type" 
+        :placeholder="placeholder" 
+        :disabled="isDisabled" 
+        :required="isRequired" 
+        class="input-base"
+        :name="name"
+    >
 </template>
 
 <style lang="scss" scoped>

@@ -2,11 +2,11 @@
 defineProps<{
     id: string
     text: string
-    value: number
+    value?: string | number | boolean
     isDisabled?: boolean
 }>()
 
-const platformsModel = defineModel()
+const model = defineModel()
 </script>
 
 <template>
@@ -15,7 +15,7 @@ const platformsModel = defineModel()
             <input
                 class="baseCheckbox__input"
                 type="checkbox"
-                v-model="platformsModel"
+                v-model="model"
                 :id="id"
                 :value="value"
                 :disabled="isDisabled"
