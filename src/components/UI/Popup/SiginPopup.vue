@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 import VInput from '../Controls/VInput.vue';
 import VTitle from '../Typography/VTitle.vue';
 import VLink from '../Controls/VLink.vue';
 import VCheckbox from '../Controls/VCheckbox.vue';
+import VLabel from '../Controls/VLabel.vue';
 
 const form = reactive({
     name: '',
@@ -40,13 +41,25 @@ const submitForm = () => {
             Registration
         </VTitle>
         <form @submit.prevent="submitForm" novalidate class="signin__wrap">
-            <VInput v-model="form.name" type="text" placeholder="Enter name" name="user-name" is-required />
+            <div class="sigin__item">
+                <VLabel for="user-name">Name:</VLabel>
+                <VInput v-model="form.name" id="user-name" type="text" placeholder="Enter name" name="user-name" autocomplete="given-name" inputmode="text" is-required />
+            </div>
 
-            <VInput v-model="form.email" type="email" placeholder="Enter email" name="user-email" is-required />
+            <div class="sigin__item">
+                <VLabel for="user-email">Email:</VLabel>
+                <VInput v-model="form.email" id="user-email" type="email" placeholder="Enter email" autocomplete="email" inputmode="email" name="user-email" is-required />
+            </div>
 
-            <VInput v-model="form.password" type="password" placeholder="Enter password" name="user-password" is-required />
+            <div class="sigin__item">
+                <VLabel for="user-password">Password:</VLabel>
+                <VInput v-model="form.password" id="user-password" type="password" placeholder="Enter password" autocomplete="new-password" name="user-password" is-required />
+            </div>
 
-            <VInput v-model="form.confirmPassword" type="password" placeholder="Confirm password" name="user-confirm-password" is-required />
+            <div class="sigin__item">
+                <VLabel for="user-confirm-password">Confirm password:</VLabel>
+                <VInput v-model="form.confirmPassword" id="user-confirm-password" type="password" placeholder="Confirm password" autocomplete="new-password" name="user-confirm-password" is-required />
+            </div>
 
             <VCheckbox
                 id="terms"
@@ -76,7 +89,7 @@ const submitForm = () => {
     &__wrap {
         display: flex;
         flex-direction: column;
-        gap: 22px;
+        gap: 20px;
     }
 
     &__checkbox {

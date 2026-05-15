@@ -72,7 +72,6 @@ onBeforeUnmount(() => {
     left: 0;
     z-index: 10;
     width: 350px;
-    height: 550px;
     opacity: 0;
     background-color: var(--color-dark-second);
     border: none;
